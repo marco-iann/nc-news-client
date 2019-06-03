@@ -5,13 +5,13 @@ import Header from './components/Header/Header';
 import LoginPage from './components/Login/LoginPage';
 
 class App extends React.Component {
-  state = { loggedInUser: {} };
+  state = { loggedInUser: null };
 
   render() {
     const { loggedInUser } = this.state;
     return (
       <div className="app">
-        <Header user={loggedInUser.username} logOut={this.logOut} />
+        <Header user={loggedInUser} logOut={this.logOut} />
         <Router>
           <LoginPage path="login" logIn={this.logIn} />
         </Router>
@@ -24,7 +24,7 @@ class App extends React.Component {
   };
 
   logOut = () => {
-    this.setState({ loggedInUser: {} });
+    this.setState({ loggedInUser: null });
   };
 }
 
