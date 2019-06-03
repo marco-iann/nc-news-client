@@ -2,10 +2,11 @@ import React from 'react';
 import './Header.css';
 import { Link } from '@reach/router';
 
-const Header = () => {
+const Header = ({ user, logOut }) => {
   return (
     <div>
-      <h1>Header</h1>
+      <h1>NC News</h1>
+      {user && <p>You are logged in as {user}</p>}
       <div className="links">
         <Link className="link" to="/topics">
           Topics
@@ -16,9 +17,15 @@ const Header = () => {
         <Link className="link" to="/dashboard">
           Dashboard
         </Link>
-        <Link className="link" to="/login">
-          Login
-        </Link>
+        {user ? (
+          <button className="logout-button" onClick={logOut}>
+            Logout
+          </button>
+        ) : (
+          <Link className="link" to="/login">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
