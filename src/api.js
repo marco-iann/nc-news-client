@@ -19,3 +19,20 @@ export const getArticles = params => {
     return data;
   });
 };
+
+export const getArticleById = id => {
+  const articlePromise = axios.get(baseUrl + 'articles/' + id);
+  const commentsPromise = axios.get(baseUrl + 'articles/' + id + '/comments');
+  return Promise.all([articlePromise, commentsPromise]).then(
+    ([
+      {
+        data: { article }
+      },
+      {
+        data: { comments }
+      }
+    ]) => {
+      return [article, comments];
+    }
+  );
+};
