@@ -7,3 +7,9 @@ export const checkUsername = username => {
     return user.username;
   });
 };
+
+export const getTopics = () => {
+  return axios.get(baseUrl + 'topics').then(({ data: { topics } }) => {
+    return topics;
+  });
+};
