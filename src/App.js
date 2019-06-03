@@ -3,6 +3,7 @@ import './App.css';
 import { Router } from '@reach/router';
 import Header from './components/Header/Header';
 import TopicsPage from './components/Topics/TopicsPage';
+import ArticlesPage from './components/Articles/ArticlesPage';
 import LoginPage from './components/Login/LoginPage';
 
 class App extends React.Component {
@@ -15,6 +16,7 @@ class App extends React.Component {
         <Header user={loggedInUser} logOut={() => this.setUser(null)} />
         <Router>
           <TopicsPage path="topics" />
+          <ArticlesPage path="articles" />
           <LoginPage path="login" logIn={this.setUser} />
         </Router>
       </div>
