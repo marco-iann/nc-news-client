@@ -35,7 +35,7 @@ class LoginPage extends React.Component {
   logInUser = e => {
     e.preventDefault();
     checkUsername(this.state.userInput).then(userToLogIn => {
-      this.props.logIn(userToLogIn);
+      this.props.logIn(userToLogIn.username);
       this.setState({ userInput: '' });
     });
   };
