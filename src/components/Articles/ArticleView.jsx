@@ -18,7 +18,7 @@ class ArticleView extends React.Component {
     return (
       selectedArticle && (
         <div>
-          <h5>{selectedArticle.title}</h5>
+          <h3>{selectedArticle.title}</h3>
           <h6>{selectedArticle.author}</h6>
           <p>{selectedArticle.created_at}</p>
           <p>{selectedArticle.body}</p>

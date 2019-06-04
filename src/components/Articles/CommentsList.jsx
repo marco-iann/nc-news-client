@@ -4,6 +4,7 @@ const CommentsList = props => {
   const { comments } = props;
   return (
     <div>
+      <h6>Comments: {comments.length}</h6>
       {comments.map(comment => {
         return (
           <div key={`comment${comment.comment_id}`}>

@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from '@reach/router';
 
 const TopicsList = ({ topics }) => {
   return (
     <div>
-      {topics.map(topic => {
+      {topics.map((topic, i) => {
         return (
-          <div>
+          <div key={`topic${i}`}>
             <h5>{topic.slug}</h5>
             <p>{topic.description}</p>
-            <button>View Articles</button>
+            <Link to={`/articles/${topic.slug}`}>View related articles</Link>
           </div>
         );
       })}

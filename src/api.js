@@ -15,7 +15,7 @@ export const getTopics = () => {
 };
 
 export const getArticles = params => {
-  return axios.get(baseUrl + 'articles', params).then(({ data }) => {
+  return axios.get(baseUrl + 'articles', { params }).then(({ data }) => {
     return data;
   });
 };

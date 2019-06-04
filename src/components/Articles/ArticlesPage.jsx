@@ -7,7 +7,8 @@ class ArticlesPage extends React.Component {
   state = { articles: [], articles_count: 0 };
 
   componentDidMount() {
-    getArticles().then(({ articles, articles_count }) =>
+    const { topic } = this.props;
+    getArticles({ topic }).then(({ articles, articles_count }) =>
       this.setState({ articles, articles_count })
     );
   }

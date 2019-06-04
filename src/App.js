@@ -19,6 +19,7 @@ class App extends React.Component {
         <Router>
           <TopicsPage path="topics" />
           <ArticlesPage path="articles" loggedInUser={loggedInUser} />
+          <ArticlesPage path="articles/:topic" loggedInUser={loggedInUser} />
           <ArticleView
             path="articles/:article_id"
             loggedInUser={loggedInUser}
