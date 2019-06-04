@@ -9,7 +9,7 @@ import AddArticle from './components/Articles/AddArticle';
 import LoginPage from './components/Login/LoginPage';
 
 class App extends React.Component {
-  state = { loggedInUser: 'jessjelly' };
+  state = { loggedInUser: '' };
 
   render() {
     const { loggedInUser } = this.state;
