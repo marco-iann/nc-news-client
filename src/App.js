@@ -8,7 +8,7 @@ import ArticleView from './components/Articles/ArticleView';
 import LoginPage from './components/Login/LoginPage';
 
 class App extends React.Component {
-  state = { loggedInUser: null };
+  state = { loggedInUser: '' };
 
   render() {
     const { loggedInUser } = this.state;
@@ -18,7 +18,7 @@ class App extends React.Component {
         <Router>
           <TopicsPage path="topics" />
           <ArticlesPage path="articles" />
-          <ArticleView path="articles/:article_id" />
+          <ArticleView path="articles/:article_id" user={loggedInUser} />
           <LoginPage path="login" logIn={this.setUser} />
         </Router>
       </div>

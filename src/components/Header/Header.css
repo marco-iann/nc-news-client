@@ -1,5 +1,10 @@
+h1 {
+  padding: 10px;
+}
+
 .link {
   text-decoration: none;
+  padding: 10px;
 }
 
 .logout-button {

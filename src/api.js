@@ -20,9 +20,11 @@ export const getArticles = params => {
   });
 };
 
-export const getArticleById = id => {
-  const articlePromise = axios.get(baseUrl + 'articles/' + id);
-  const commentsPromise = axios.get(baseUrl + 'articles/' + id + '/comments');
+export const getArticleById = article_id => {
+  const articlePromise = axios.get(baseUrl + 'articles/' + article_id);
+  const commentsPromise = axios.get(
+    baseUrl + 'articles/' + article_id + '/comments'
+  );
   return Promise.all([articlePromise, commentsPromise]).then(
     ([
       {
@@ -35,4 +37,12 @@ export const getArticleById = id => {
       return [article, comments];
     }
   );
+};
+
+export const postComment = ({ article_id, username, body }) => {
+  return axios
+    .post(baseUrl + 'articles/' + article_id + '/comments', { username, body })
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
 };
