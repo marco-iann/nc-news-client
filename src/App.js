@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Router } from '@reach/router';
+import { Router, navigate } from '@reach/router';
 import Header from './components/Header/Header';
 import TopicsPage from './components/Topics/TopicsPage';
 import ArticlesPage from './components/Articles/ArticlesPage';
@@ -15,7 +15,7 @@ class App extends React.Component {
     const { loggedInUser } = this.state;
     return (
       <div className="app">
-        <Header user={loggedInUser} logOut={() => this.setUser(null)} />
+        <Header user={loggedInUser} logOut={this.logOut} />
         <Router>
           <TopicsPage path="topics" />
           <ArticlesPage path="articles" loggedInUser={loggedInUser} />
@@ -32,6 +32,11 @@ class App extends React.Component {
 
   setUser = user => {
     this.setState({ loggedInUser: user });
+  };
+
+  logOut = () => {
+    this.setUser(null);
+    navigate('/login');
   };
 }
 
