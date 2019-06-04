@@ -15,7 +15,7 @@ export const getTopics = () => {
 };
 
 export const getArticles = params => {
-  return axios.get(baseUrl + 'articles', { params }).then(({ data }) => {
+  return axios.get(baseUrl + 'articles', params).then(({ data }) => {
     return data;
   });
 };
@@ -44,5 +44,13 @@ export const postComment = ({ article_id, username, body }) => {
     .post(baseUrl + 'articles/' + article_id + '/comments', { username, body })
     .then(({ data: { comment } }) => {
       return comment;
+    });
+};
+
+export const postArticle = newArticle => {
+  return axios
+    .post(baseUrl + 'articles', newArticle)
+    .then(({ data: { article } }) => {
+      return article;
     });
 };

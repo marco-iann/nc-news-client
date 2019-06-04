@@ -14,7 +14,7 @@ class ArticleView extends React.Component {
 
   render() {
     const { selectedArticle, comments } = this.state;
-    const { user } = this.props;
+    const { loggedInUser } = this.props;
     return (
       selectedArticle && (
         <div>
@@ -23,7 +23,7 @@ class ArticleView extends React.Component {
           <p>{selectedArticle.created_at}</p>
           <p>{selectedArticle.body}</p>
           <CommentsList comments={comments} />
-          {user && <CommentBox addComment={this.addComment} />}
+          {loggedInUser && <CommentBox addComment={this.addComment} />}
         </div>
       )
     );
@@ -32,7 +32,7 @@ class ArticleView extends React.Component {
   addComment = body => {
     postComment({
       article_id: this.state.selectedArticle.article_id,
-      username: this.props.user,
+      username: this.props.loggedInUser,
       body
     }).then(comment => {
       const comments = this.state.comments;
