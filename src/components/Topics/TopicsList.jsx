@@ -9,7 +9,7 @@ const TopicsList = ({ topics }) => {
           <div key={`topic${i}`}>
             <h5>{topic.slug}</h5>
             <p>{topic.description}</p>
-            <Link to={`/articles/${topic.slug}`}>View related articles</Link>
+            <Link to={`/topics/${topic.slug}`}>View related articles</Link>
           </div>
         );
       })}

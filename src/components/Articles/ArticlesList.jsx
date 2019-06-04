@@ -10,7 +10,7 @@ const ArticlesList = ({ articles }) => {
           <div key={`article${article_id}`}>
             <h5>{title}</h5>
             <p>{author}</p>
-            <Link to={`${article_id}`}>View Article</Link>
+            <Link to={`/articles/${article_id}`}>View Article</Link>
           </div>
         );
       })}
