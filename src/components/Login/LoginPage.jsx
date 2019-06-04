@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@reach/router';
 import { checkUsername } from '../../api';
 
 class LoginPage extends React.Component {
@@ -20,6 +21,9 @@ class LoginPage extends React.Component {
           </label>
           <button onClick={this.logInUser}>Login</button>
         </form>
+        <p>
+          Not yet registered? <Link to="/signin">Sign In</Link>
+        </p>
       </div>
     );
   }
