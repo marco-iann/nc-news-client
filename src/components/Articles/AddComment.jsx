@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CommentBox extends React.Component {
+class AddComment extends React.Component {
   state = { commentInput: '' };
   render() {
     const { commentInput } = this.state;
@@ -29,4 +29,4 @@ class CommentBox extends React.Component {
   };
 }
 
-export default CommentBox;
+export default AddComment;

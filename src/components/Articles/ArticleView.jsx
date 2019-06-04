@@ -1,7 +1,7 @@
 import React from 'react';
 import { getArticleById, postComment } from '../../api';
 import CommentsList from './CommentsList';
-import CommentBox from './CommentBox';
+import AddComment from './AddComment';
 
 class ArticleView extends React.Component {
   state = { selectedArticle: {}, comments: [] };
@@ -23,7 +23,7 @@ class ArticleView extends React.Component {
           <p>{selectedArticle.created_at}</p>
           <p>{selectedArticle.body}</p>
           <CommentsList comments={comments} />
-          {loggedInUser && <CommentBox addComment={this.addComment} />}
+          {loggedInUser && <AddComment addComment={this.addComment} />}
         </div>
       )
     );
