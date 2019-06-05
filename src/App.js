@@ -11,7 +11,7 @@ import SignInPage from './components/Users/SignInPage';
 import Dashboard from './components/Users/Dashboard';
 
 class App extends React.Component {
-  state = { loggedInUser: 'weegembump' };
+  state = { loggedInUser: '' };
 
   render() {
     const { loggedInUser } = this.state;
