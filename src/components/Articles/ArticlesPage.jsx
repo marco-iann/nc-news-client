@@ -4,7 +4,7 @@ import { Link } from '@reach/router';
 import { getArticles } from '../../api';
 
 class ArticlesPage extends React.Component {
-  state = { articles: [], articles_count: 0, sort_by: '' };
+  state = { articles: [], articles_count: 0, sort_by: '', p: 1 };
 
   componentDidMount() {
     const { topic } = this.props;
@@ -14,18 +14,24 @@ class ArticlesPage extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { sort_by } = this.state;
+    const { sort_by, p } = this.state;
     const { topic } = this.props;
     if (prevState.sort_by !== sort_by) {
       getArticles({ topic, sort_by }).then(({ articles, articles_count }) =>
         this.setState({ articles, articles_count })
       );
     }
+    if (prevState.p !== p) {
+      getArticles({ topic, p }).then(({ articles, articles_count }) =>
+        this.setState({ articles, articles_count })
+      );
+    }
   }
 
   render() {
-    const { articles } = this.state;
+    const { articles, articles_count } = this.state;
     const { loggedInUser } = this.props;
+    const pages = Array.from({ length: Math.ceil(articles_count / 10) });
     return (
       <div>
         <h3>Articles</h3>
@@ -40,6 +46,17 @@ class ArticlesPage extends React.Component {
           </label>
         </form>
         <ArticlesList articles={articles} />
+        {pages.map((page, i) => {
+          const currentPage = i + 1;
+          return (
+            <button
+              key={`page${currentPage}`}
+              onClick={() => this.updatePage(currentPage)}
+            >
+              {currentPage}
+            </button>
+          );
+        })}
         {loggedInUser && <Link to="/addArticle">New Article</Link>}
       </div>
     );
@@ -47,6 +64,10 @@ class ArticlesPage extends React.Component {
 
   changeSorting = e => {
     this.setState({ sort_by: e.target.value });
+  };
+
+  updatePage = page => {
+    this.setState({ p: page });
   };
 }
 
