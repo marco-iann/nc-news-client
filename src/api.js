@@ -21,22 +21,19 @@ export const getArticles = params => {
 };
 
 export const getArticleById = article_id => {
-  const articlePromise = axios.get(baseUrl + 'articles/' + article_id);
-  const commentsPromise = axios.get(
-    baseUrl + 'articles/' + article_id + '/comments'
-  );
-  return Promise.all([articlePromise, commentsPromise]).then(
-    ([
-      {
-        data: { article }
-      },
-      {
-        data: { comments }
-      }
-    ]) => {
-      return [article, comments];
-    }
-  );
+  return axios
+    .get(baseUrl + 'articles/' + article_id)
+    .then(({ data: { article } }) => {
+      return article;
+    });
+};
+
+export const getCommentsByArticleId = article_id => {
+  return axios
+    .get(baseUrl + 'articles/' + article_id + '/comments')
+    .then(({ data: { comments } }) => {
+      return comments;
+    });
 };
 
 export const postComment = ({ article_id, username, body }) => {
@@ -59,4 +56,12 @@ export const addUser = user => {
   return axios.post(baseUrl + 'users', user).then(({ data: { user } }) => {
     return user;
   });
+};
+
+export const deleteArticle = id => {
+  return axios.delete(baseUrl + 'articles/' + id);
+};
+
+export const deleteComment = id => {
+  return axios.delete(baseUrl + 'comments/' + id);
 };

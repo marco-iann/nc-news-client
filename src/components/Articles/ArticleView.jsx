@@ -1,5 +1,5 @@
 import React from 'react';
-import { getArticleById, postComment } from '../../api';
+import { getArticleById, getCommentsByArticleId, postComment } from '../../api';
 import CommentsList from './CommentsList';
 import AddComment from './AddComment';
 
@@ -7,7 +7,10 @@ class ArticleView extends React.Component {
   state = { selectedArticle: {}, comments: [] };
 
   componentDidMount() {
-    getArticleById(this.props.article_id).then(([article, comments]) => {
+    Promise.all([
+      getArticleById(this.props.article_id),
+      getCommentsByArticleId(this.props.article_id)
+    ]).then(([article, comments]) => {
       this.setState({ selectedArticle: article, comments });
     });
   }
@@ -19,10 +22,17 @@ class ArticleView extends React.Component {
       selectedArticle && (
         <div>
           <h3>{selectedArticle.title}</h3>
+          {selectedArticle.author === loggedInUser && (
+            <button>Delete article</button>
+          )}
           <h6>{selectedArticle.author}</h6>
           <p>{selectedArticle.created_at}</p>
           <p>{selectedArticle.body}</p>
-          <CommentsList comments={comments} />
+          <CommentsList
+            comments={comments}
+            loggedInUser={loggedInUser}
+            commentsCount={selectedArticle.comments_count}
+          />
           {loggedInUser && <AddComment addComment={this.addComment} />}
         </div>
       )
