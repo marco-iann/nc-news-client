@@ -30,19 +30,23 @@ class ArticleView extends React.Component {
           <h6>{author}</h6>
           <p>{created_at}</p>
           <p>{body}</p>
-          <button
-            disabled={voteChange === 1}
-            onClick={() => this.handleVote(1)}
-          >
-            Upvote
-          </button>
           <p>Votes: {votes + voteChange}</p>
-          <button
-            disabled={voteChange === -1}
-            onClick={() => this.handleVote(-1)}
-          >
-            Downvote
-          </button>
+          {loggedInUser && (
+            <>
+              <button
+                disabled={voteChange === 1}
+                onClick={() => this.handleVote(1)}
+              >
+                Upvote
+              </button>
+              <button
+                disabled={voteChange === -1}
+                onClick={() => this.handleVote(-1)}
+              >
+                Downvote
+              </button>
+            </>
+          )}
           <CommentsList
             articleId={this.props.article_id}
             commentsCount={comments_count}

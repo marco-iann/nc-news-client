@@ -13,16 +13,23 @@ class CommentView extends React.Component {
         <h5>{author}</h5>
         <p>{created_at}</p>
         <p>{body}</p>
-        <button disabled={voteChange === 1} onClick={() => this.handleVote(1)}>
-          Upvote
-        </button>
         <p>Votes: {votes + voteChange}</p>
-        <button
-          disabled={voteChange === -1}
-          onClick={() => this.handleVote(-1)}
-        >
-          Downvote
-        </button>
+        {loggedInUser && (
+          <>
+            <button
+              disabled={voteChange === 1}
+              onClick={() => this.handleVote(1)}
+            >
+              Upvote
+            </button>
+            <button
+              disabled={voteChange === -1}
+              onClick={() => this.handleVote(-1)}
+            >
+              Downvote
+            </button>
+          </>
+        )}
         {author === loggedInUser && <button>Delete comment</button>}
       </div>
     );
