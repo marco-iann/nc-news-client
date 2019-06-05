@@ -1,5 +1,6 @@
 import React from 'react';
-import { getCommentsByArticleId, deleteComment } from '../../api';
+import CommentView from './CommentView';
+import { getCommentsByArticleId } from '../../api';
 
 class CommentsList extends React.Component {
   state = { comments: [] };
@@ -12,30 +13,23 @@ class CommentsList extends React.Component {
   }
 
   render() {
-    const { loggedInUser } = this.props;
     const { comments } = this.state;
     return (
       <div>
         <h5>Comments: {this.props.commentsCount}</h5>
         {comments.map(comment => {
+          const { comment_id } = comment;
           return (
-            <div key={`comment${comment.comment_id}`}>
-              <h5>{comment.author}</h5>
-              <p>{comment.created_at}</p>
-              <p>{comment.body}</p>
-              {comment.author === loggedInUser && (
-                <button>Delete comment</button>
-              )}
-            </div>
+            <CommentView
+              key={`comment${comment_id}`}
+              comment={comment}
+              loggedInUser={this.props.loggedInUser}
+            />
           );
         })}
       </div>
     );
   }
-
-  handleDeleteComment = id => {
-    deleteComment(id);
-  };
 }
 
 export default CommentsList;

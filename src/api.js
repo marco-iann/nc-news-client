@@ -71,3 +71,11 @@ export const patchArticle = (id, direction) => {
       return article;
     });
 };
+
+export const patchComment = (id, direction) => {
+  return axios
+    .patch(baseUrl + 'comments/' + id, { inc_votes: direction })
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
+};

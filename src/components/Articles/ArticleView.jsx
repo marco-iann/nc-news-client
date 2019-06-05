@@ -1,7 +1,7 @@
 import React from 'react';
 import { getArticleById, postComment, patchArticle } from '../../api';
-import CommentsList from './CommentsList';
-import AddComment from './AddComment';
+import CommentsList from '../Comments/CommentsList';
+import AddComment from '../Comments/AddComment';
 
 class ArticleView extends React.Component {
   state = { selectedArticle: null, voteChange: 0 };
