@@ -1,11 +1,19 @@
 import React from 'react';
-import { deleteComment } from '../../api';
+import { getCommentsByArticleId, deleteComment } from '../../api';
 
 class CommentsList extends React.Component {
-  state = { commentsCount: this.props.commentsCount };
+  state = { comments: [] };
+
+  componentDidMount() {
+    const articleId = this.props.article_id;
+    getCommentsByArticleId(articleId).then(comments =>
+      this.setState({ comments })
+    );
+  }
 
   render() {
-    const { comments, loggedInUser } = this.props;
+    const { loggedInUser } = this.props;
+    const { comments } = this.state;
     return (
       <div>
         <h5>Comments: {this.props.commentsCount}</h5>
@@ -24,6 +32,10 @@ class CommentsList extends React.Component {
       </div>
     );
   }
+
+  handleDeleteComment = id => {
+    deleteComment(id);
+  };
 }
 
 export default CommentsList;

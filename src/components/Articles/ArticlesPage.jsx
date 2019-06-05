@@ -38,7 +38,7 @@ class ArticlesPage extends React.Component {
         <form>
           <label>
             Order:
-            <select onChange={this.changeSorting}>
+            <select onChange={this.updateSorting}>
               <option value="created_at">Newest</option>
               <option value="comments_count">Most Commented</option>
               <option value="votes">Most Voted</option>
@@ -62,7 +62,7 @@ class ArticlesPage extends React.Component {
     );
   }
 
-  changeSorting = e => {
+  updateSorting = e => {
     this.setState({ sort_by: e.target.value });
   };
 

@@ -16,7 +16,7 @@ class ArticleView extends React.Component {
   }
 
   render() {
-    const { selectedArticle, comments } = this.state;
+    const { selectedArticle } = this.state;
     const { loggedInUser } = this.props;
     return (
       selectedArticle && (
@@ -29,9 +29,8 @@ class ArticleView extends React.Component {
           <p>{selectedArticle.created_at}</p>
           <p>{selectedArticle.body}</p>
           <CommentsList
-            comments={comments}
+            article_id={this.props.article_id}
             loggedInUser={loggedInUser}
-            commentsCount={selectedArticle.comments_count}
           />
           {loggedInUser && <AddComment addComment={this.addComment} />}
         </div>
