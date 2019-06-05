@@ -1,10 +1,11 @@
 import React from 'react';
+import { patchComment } from '../../api';
 
 class CommentView extends React.Component {
-  state = { comment: this.props.comment, votes: 0 };
+  state = { comment: this.props.comment, voteChange: 0 };
 
   render() {
-    const { comment } = this.state;
+    const { comment, voteChange } = this.state;
     const { loggedInUser } = this.props;
     const { author, body, created_at, votes } = comment ? comment : {};
     return (
@@ -12,13 +13,31 @@ class CommentView extends React.Component {
         <h5>{author}</h5>
         <p>{created_at}</p>
         <p>{body}</p>
-        <button>Upvote</button>
-        <p>Votes: {votes}</p>
-        <button>Downvote</button>
+        <button disabled={voteChange === 1} onClick={() => this.handleVote(1)}>
+          Upvote
+        </button>
+        <p>Votes: {votes + voteChange}</p>
+        <button
+          disabled={voteChange === -1}
+          onClick={() => this.handleVote(-1)}
+        >
+          Downvote
+        </button>
         {author === loggedInUser && <button>Delete comment</button>}
       </div>
     );
   }
+
+  handleVote = direction => {
+    this.setState(prevState => {
+      return { voteChange: prevState.voteChange + direction };
+    });
+    patchComment(this.props.comment.comment_id, direction).catch(() =>
+      this.setState(prevState => {
+        return { voteChange: prevState.voteChange - direction };
+      })
+    );
+  };
 }
 
 export default CommentView;
