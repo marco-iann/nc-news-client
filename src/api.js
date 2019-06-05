@@ -34,9 +34,9 @@ export const getCommentsByArticleId = id => {
     });
 };
 
-export const postComment = ({ id, username, body }) => {
+export const postComment = ({ article_id, username, body }) => {
   return axios
-    .post(baseUrl + 'articles/' + id + '/comments', { username, body })
+    .post(baseUrl + 'articles/' + article_id + '/comments', { username, body })
     .then(({ data: { comment } }) => {
       return comment;
     });

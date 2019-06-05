@@ -1,7 +1,6 @@
 import React from 'react';
-import { getArticleById, postComment, patchArticle } from '../../api';
+import { getArticleById, patchArticle } from '../../api';
 import CommentsList from '../Comments/CommentsList';
-import AddComment from '../Comments/AddComment';
 
 class ArticleView extends React.Component {
   state = { selectedArticle: null, voteChange: 0 };
@@ -49,23 +48,10 @@ class ArticleView extends React.Component {
             commentsCount={comments_count}
             loggedInUser={loggedInUser}
           />
-          {loggedInUser && <AddComment addComment={this.addComment} />}
         </div>
       )
     );
   }
-
-  addComment = body => {
-    postComment({
-      article_id: this.state.selectedArticle.article_id,
-      username: this.props.loggedInUser,
-      body
-    }).then(comment => {
-      const comments = this.state.comments;
-      comments.unshift(comment);
-      this.setState({ comments });
-    });
-  };
 
   handleVote = direction => {
     this.setState(prevState => {

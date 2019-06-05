@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentView from './CommentView';
-import { getCommentsByArticleId } from '../../api';
+import AddComment from '../Comments/AddComment';
+import { getCommentsByArticleId, postComment } from '../../api';
 
 class CommentsList extends React.Component {
   state = { comments: [] };
@@ -14,6 +15,7 @@ class CommentsList extends React.Component {
 
   render() {
     const { comments } = this.state;
+    const { loggedInUser } = this.props;
     return (
       <div>
         <h5>Comments: {this.props.commentsCount}</h5>
@@ -27,9 +29,22 @@ class CommentsList extends React.Component {
             />
           );
         })}
+        {loggedInUser && <AddComment addComment={this.addComment} />}
       </div>
     );
   }
+
+  addComment = body => {
+    postComment({
+      article_id: this.props.articleId,
+      username: this.props.loggedInUser,
+      body
+    }).then(comment => {
+      const comments = this.state.comments;
+      comments.unshift(comment);
+      this.setState({ comments });
+    });
+  };
 }
 
 export default CommentsList;
