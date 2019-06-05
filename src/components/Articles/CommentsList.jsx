@@ -5,7 +5,7 @@ class CommentsList extends React.Component {
   state = { comments: [] };
 
   componentDidMount() {
-    const articleId = this.props.article_id;
+    const articleId = this.props.articleId;
     getCommentsByArticleId(articleId).then(comments =>
       this.setState({ comments })
     );

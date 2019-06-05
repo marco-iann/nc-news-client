@@ -1,35 +1,52 @@
 import React from 'react';
-import { getArticleById, getCommentsByArticleId, postComment } from '../../api';
+import { getArticleById, postComment, patchArticle } from '../../api';
 import CommentsList from './CommentsList';
 import AddComment from './AddComment';
 
 class ArticleView extends React.Component {
-  state = { selectedArticle: {}, comments: [] };
+  state = { selectedArticle: null, voteChange: 0 };
 
   componentDidMount() {
-    Promise.all([
-      getArticleById(this.props.article_id),
-      getCommentsByArticleId(this.props.article_id)
-    ]).then(([article, comments]) => {
-      this.setState({ selectedArticle: article, comments });
+    getArticleById(this.props.article_id).then(article => {
+      this.setState({ selectedArticle: article });
     });
   }
 
   render() {
-    const { selectedArticle } = this.state;
+    const { selectedArticle, voteChange } = this.state;
     const { loggedInUser } = this.props;
+    const {
+      title,
+      author,
+      created_at,
+      body,
+      votes,
+      comments_count
+    } = selectedArticle ? selectedArticle : {};
     return (
       selectedArticle && (
         <div>
-          <h3>{selectedArticle.title}</h3>
-          {selectedArticle.author === loggedInUser && (
-            <button>Delete article</button>
-          )}
-          <h6>{selectedArticle.author}</h6>
-          <p>{selectedArticle.created_at}</p>
-          <p>{selectedArticle.body}</p>
+          <h3>{title}</h3>
+          {author === loggedInUser && <button>Delete article</button>}
+          <h6>{author}</h6>
+          <p>{created_at}</p>
+          <p>{body}</p>
+          <button
+            disabled={voteChange === 1}
+            onClick={() => this.handleVote(1)}
+          >
+            Upvote
+          </button>
+          <p>Votes: {votes + voteChange}</p>
+          <button
+            disabled={voteChange === -1}
+            onClick={() => this.handleVote(-1)}
+          >
+            Downvote
+          </button>
           <CommentsList
-            article_id={this.props.article_id}
+            articleId={this.props.article_id}
+            commentsCount={comments_count}
             loggedInUser={loggedInUser}
           />
           {loggedInUser && <AddComment addComment={this.addComment} />}
@@ -48,6 +65,17 @@ class ArticleView extends React.Component {
       comments.unshift(comment);
       this.setState({ comments });
     });
+  };
+
+  handleVote = direction => {
+    this.setState(prevState => {
+      return { voteChange: prevState.voteChange + direction };
+    });
+    patchArticle(this.props.article_id, direction).catch(() =>
+      this.setState(prevState => {
+        return { voteChange: prevState.voteChange - direction };
+      })
+    );
   };
 }
 

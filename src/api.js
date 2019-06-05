@@ -20,25 +20,23 @@ export const getArticles = params => {
   });
 };
 
-export const getArticleById = article_id => {
-  return axios
-    .get(baseUrl + 'articles/' + article_id)
-    .then(({ data: { article } }) => {
-      return article;
-    });
+export const getArticleById = id => {
+  return axios.get(baseUrl + 'articles/' + id).then(({ data: { article } }) => {
+    return article;
+  });
 };
 
-export const getCommentsByArticleId = article_id => {
+export const getCommentsByArticleId = id => {
   return axios
-    .get(baseUrl + 'articles/' + article_id + '/comments')
+    .get(baseUrl + 'articles/' + id + '/comments')
     .then(({ data: { comments } }) => {
       return comments;
     });
 };
 
-export const postComment = ({ article_id, username, body }) => {
+export const postComment = ({ id, username, body }) => {
   return axios
-    .post(baseUrl + 'articles/' + article_id + '/comments', { username, body })
+    .post(baseUrl + 'articles/' + id + '/comments', { username, body })
     .then(({ data: { comment } }) => {
       return comment;
     });
@@ -64,4 +62,12 @@ export const deleteArticle = id => {
 
 export const deleteComment = id => {
   return axios.delete(baseUrl + 'comments/' + id);
+};
+
+export const patchArticle = (id, direction) => {
+  return axios
+    .patch(baseUrl + 'articles/' + id, { inc_votes: direction })
+    .then(({ data: { article } }) => {
+      return article;
+    });
 };
