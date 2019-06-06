@@ -42,18 +42,19 @@ class CommentsList extends React.Component {
             );
           })}
         </ul>
-        {pages.map((page, i) => {
-          const currentPage = i + 1;
-          return (
-            <button
-              key={`page${currentPage}`}
-              onClick={() => this.updatePage(currentPage)}
-              disabled={currentPage === this.state.p}
-            >
-              {currentPage}
-            </button>
-          );
-        })}
+        {pages.length > 1 &&
+          pages.map((page, i) => {
+            const currentPage = i + 1;
+            return (
+              <button
+                key={`page${currentPage}`}
+                onClick={() => this.updatePage(currentPage)}
+                disabled={currentPage === this.state.p}
+              >
+                {currentPage}
+              </button>
+            );
+          })}
         {loggedInUser && <AddComment addComment={this.addComment} />}
       </div>
     );
