@@ -14,26 +14,28 @@ class AddArticle extends React.Component {
   render() {
     const { topics, title, body } = this.state;
     return (
-      <form>
+      <form onSubmit={this.submitArticle}>
         <input
           name="title"
           placeholder="Title"
           type="text"
           value={title}
           onChange={this.saveInput}
+          required={true}
         />
         <textarea
           name="body"
           placeholder="Article text here"
           value={body}
           onChange={this.saveInput}
+          required={true}
         />
         <select onChange={this.selectTopic}>
           {topics.map((topic, i) => {
             return <option key={`topic${i}`}>{topic.slug}</option>;
           })}
         </select>
-        <button onClick={this.submitArticle}>Post</button>
+        <button>Post</button>
       </form>
     );
   }

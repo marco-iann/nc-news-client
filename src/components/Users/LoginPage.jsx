@@ -9,7 +9,7 @@ class LoginPage extends React.Component {
     return (
       <div>
         <h3>Login</h3>
-        <form>
+        <form onSubmit={this.logInUser}>
           <label>
             Username
             <input
@@ -17,9 +17,10 @@ class LoginPage extends React.Component {
               placeholder="Username"
               onChange={this.saveUserInput}
               value={this.state.userInput}
+              required={true}
             />
           </label>
-          <button onClick={this.logInUser}>Login</button>
+          <button>Login</button>
         </form>
         <p>
           Not yet registered? <Link to="/signin">Sign In</Link>
