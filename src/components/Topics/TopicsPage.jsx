@@ -14,7 +14,9 @@ class TopicsPage extends React.Component {
     return (
       <div>
         <h3>Topics</h3>
-        <TopicsList topics={topics} />
+        <ul>
+          <TopicsList topics={topics} />
+        </ul>
       </div>
     );
   }

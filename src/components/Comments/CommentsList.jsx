@@ -19,17 +19,19 @@ class CommentsList extends React.Component {
     return (
       <div>
         <h5>Comments: {commentsCount}</h5>
-        {comments.map(comment => {
-          const { comment_id } = comment;
-          return (
-            <CommentView
-              key={`comment${comment_id}`}
-              comment={comment}
-              loggedInUser={this.props.loggedInUser}
-              removeComment={this.removeComment}
-            />
-          );
-        })}
+        <ul>
+          {comments.map(comment => {
+            const { comment_id } = comment;
+            return (
+              <CommentView
+                key={`comment${comment_id}`}
+                comment={comment}
+                loggedInUser={this.props.loggedInUser}
+                removeComment={this.removeComment}
+              />
+            );
+          })}
+        </ul>
         {loggedInUser && <AddComment addComment={this.addComment} />}
       </div>
     );

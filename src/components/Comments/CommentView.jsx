@@ -9,7 +9,7 @@ class CommentView extends React.Component {
     const { loggedInUser } = this.props;
     const { author, body, created_at, votes } = comment ? comment : {};
     return (
-      <div>
+      <li>
         <h5>{author}</h5>
         <p>{created_at}</p>
         <p>{body}</p>
@@ -35,7 +35,7 @@ class CommentView extends React.Component {
             Delete comment
           </button>
         )}
-      </div>
+      </li>
     );
   }
 

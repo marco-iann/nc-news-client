@@ -3,19 +3,19 @@ import { Link } from '@reach/router';
 
 const ArticlesList = ({ articles }) => {
   return (
-    <div>
+    <ul>
       {articles.map(article => {
         const { article_id, title, author } = article;
         return (
-          <div key={`article${article_id}`}>
+          <li key={`article${article_id}`}>
             <h3>
               <Link to={`/articles/${article_id}`}>{title}</Link>
             </h3>
             <p>{author}</p>
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };
 
