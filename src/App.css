@@ -1,9 +1,14 @@
 body {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: black;
 }
 
 .app {
   width: 1000px;
+  min-height: 100vh;
   margin: auto;
+  color: white;
+  background-color: #323234;
 }
 
 ul {
