@@ -2,18 +2,21 @@ import React from 'react';
 import { navigate } from '@reach/router';
 import { getArticleById, patchArticle, deleteArticle } from '../../api';
 import CommentsList from '../Comments/CommentsList';
+import Error from '../Error';
 
 class ArticleView extends React.Component {
-  state = { selectedArticle: null, voteChange: 0 };
+  state = { selectedArticle: null, voteChange: 0, err: null };
 
   componentDidMount() {
-    getArticleById(this.props.article_id).then(article => {
-      this.setState({ selectedArticle: article });
-    });
+    getArticleById(this.props.article_id)
+      .then(article => {
+        this.setState({ selectedArticle: article });
+      })
+      .catch(err => this.setState({ err }));
   }
 
   render() {
-    const { selectedArticle, voteChange } = this.state;
+    const { selectedArticle, voteChange, err } = this.state;
     const { loggedInUser } = this.props;
     const {
       article_id,
@@ -24,6 +27,7 @@ class ArticleView extends React.Component {
       votes,
       comments_count
     } = selectedArticle ? selectedArticle : {};
+    if (err) return <Error err={err} />;
     return (
       selectedArticle && (
         <div>

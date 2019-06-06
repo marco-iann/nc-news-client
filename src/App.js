@@ -9,6 +9,7 @@ import AddArticle from './components/Articles/AddArticle';
 import LoginPage from './components/Users/LoginPage';
 import SignInPage from './components/Users/SignInPage';
 import Dashboard from './components/Users/Dashboard';
+import Error from './components/Error';
 
 class App extends React.Component {
   state = { loggedInUser: '' };
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Dashboard path="dashboard" loggedInUser={loggedInUser} />
           <LoginPage path="login" logIn={this.setUser} />
           <SignInPage path="signin" logIn={this.setUser} />
+          <Error default />
         </Router>
       </div>
     );
