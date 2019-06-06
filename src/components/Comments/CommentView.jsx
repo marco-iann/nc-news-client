@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { patchComment } from '../../api';
 
 class CommentView extends React.Component {
@@ -11,7 +12,7 @@ class CommentView extends React.Component {
     return (
       <li>
         <h5>{author}</h5>
-        <p>{created_at}</p>
+        <p>{moment(created_at).fromNow()}</p>
         <p>{body}</p>
         <p>Votes: {votes + voteChange}</p>
         {loggedInUser && (

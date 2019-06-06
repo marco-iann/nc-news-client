@@ -5,9 +5,9 @@ const Error = ({ err }) => {
     const status = err.response.status;
     const msg = err.response.data.msg;
     return (
-      <div>
+      <h2>
         {status} - {msg}
-      </div>
+      </h2>
     );
   }
   return <div>404 - Page not found</div>;

@@ -12,7 +12,7 @@ import Dashboard from './components/Users/Dashboard';
 import Error from './components/Error';
 
 class App extends React.Component {
-  state = { loggedInUser: 'jessjelly' };
+  state = { loggedInUser: '' };
 
   render() {
     const { loggedInUser } = this.state;
@@ -20,6 +20,7 @@ class App extends React.Component {
       <div className="app">
         <Header user={loggedInUser} logOut={this.logOut} />
         <Router>
+          <LoginPage path="/" logIn={this.setUser} />
           <TopicsPage path="topics" />
           <ArticlesPage path="articles" loggedInUser={loggedInUser} />
           <ArticleView

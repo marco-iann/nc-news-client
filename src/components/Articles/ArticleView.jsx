@@ -1,5 +1,6 @@
 import React from 'react';
 import { navigate } from '@reach/router';
+import moment from 'moment';
 import { getArticleById, patchArticle, deleteArticle } from '../../api';
 import CommentsList from '../Comments/CommentsList';
 import Error from '../Error';
@@ -38,7 +39,7 @@ class ArticleView extends React.Component {
             </button>
           )}
           <h6>{author}</h6>
-          <p>{created_at}</p>
+          <p>{moment(created_at).fromNow()}</p>
           <p>{body}</p>
           <p>Votes: {votes + voteChange}</p>
           {loggedInUser && (
