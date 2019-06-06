@@ -7,9 +7,10 @@ const TopicsList = ({ topics }) => {
       {topics.map((topic, i) => {
         return (
           <div key={`topic${i}`}>
-            <h5>{topic.slug}</h5>
+            <h5>
+              <Link to={`/topics/${topic.slug}`}>{topic.slug}</Link>
+            </h5>
             <p>{topic.description}</p>
-            <Link to={`/topics/${topic.slug}`}>View related articles</Link>
           </div>
         );
       })}
