@@ -4,9 +4,9 @@ import { Link } from '@reach/router';
 
 const Header = ({ user, logOut }) => {
   return (
-    <div>
+    <div className="header">
       <h1>Northcoders News</h1>
-      {user && <p>You are logged in as {user}</p>}
+      {user && <p className="logged-in-user">You are logged in as {user}</p>}
       <div className="links">
         <Link className="link" to="/topics">
           Topics
