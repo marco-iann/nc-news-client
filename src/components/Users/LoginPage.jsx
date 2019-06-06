@@ -3,9 +3,10 @@ import { Link } from '@reach/router';
 import { checkUsername } from '../../api';
 
 class LoginPage extends React.Component {
-  state = { userInput: '' };
+  state = { userInput: '', err: null };
 
   render() {
+    const { err } = this.state;
     return (
       <div>
         <h3>Login</h3>
@@ -22,6 +23,7 @@ class LoginPage extends React.Component {
           </label>
           <button>Login</button>
         </form>
+        {err && <p>Username does not exist</p>}
         <p>
           Not yet registered? <Link to="/signin">Sign In</Link>
         </p>
@@ -35,10 +37,12 @@ class LoginPage extends React.Component {
 
   logInUser = e => {
     e.preventDefault();
-    checkUsername(this.state.userInput).then(userToLogIn => {
-      this.props.logIn(userToLogIn.username);
-      this.setState({ userInput: '' });
-    });
+    checkUsername(this.state.userInput)
+      .then(userToLogIn => {
+        this.props.logIn(userToLogIn.username);
+        this.setState({ userInput: '' });
+      })
+      .catch(err => this.setState({ userInput: '', err }));
   };
 }
 
