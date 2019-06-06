@@ -1,5 +1,6 @@
 import React from 'react';
-import { getArticleById, patchArticle } from '../../api';
+import { navigate } from '@reach/router';
+import { getArticleById, patchArticle, deleteArticle } from '../../api';
 import CommentsList from '../Comments/CommentsList';
 
 class ArticleView extends React.Component {
@@ -15,6 +16,7 @@ class ArticleView extends React.Component {
     const { selectedArticle, voteChange } = this.state;
     const { loggedInUser } = this.props;
     const {
+      article_id,
       title,
       author,
       created_at,
@@ -26,7 +28,11 @@ class ArticleView extends React.Component {
       selectedArticle && (
         <div>
           <h3>{title}</h3>
-          {author === loggedInUser && <button>Delete article</button>}
+          {author === loggedInUser && (
+            <button onClick={() => this.removeArticle(article_id)}>
+              Delete article
+            </button>
+          )}
           <h6>{author}</h6>
           <p>{created_at}</p>
           <p>{body}</p>
@@ -66,6 +72,10 @@ class ArticleView extends React.Component {
         return { voteChange: prevState.voteChange - direction };
       })
     );
+  };
+
+  removeArticle = article_id => {
+    deleteArticle(article_id).then(() => navigate('/articles'));
   };
 }
 
