@@ -12,7 +12,7 @@ import Dashboard from './components/Users/Dashboard';
 import Error from './components/Error';
 
 class App extends React.Component {
-  state = { loggedInUser: '' };
+  state = { loggedInUser: 'jessjelly' };
 
   render() {
     const { loggedInUser } = this.state;

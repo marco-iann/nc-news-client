@@ -52,6 +52,7 @@ class ArticlesPage extends React.Component {
             <button
               key={`page${currentPage}`}
               onClick={() => this.updatePage(currentPage)}
+              disabled={currentPage === this.state.p}
             >
               {currentPage}
             </button>

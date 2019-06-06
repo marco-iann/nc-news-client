@@ -7,9 +7,9 @@ const TopicsList = ({ topics }) => {
       {topics.map((topic, i) => {
         return (
           <li key={`topic${i}`}>
-            <h5>
+            <h3>
               <Link to={`/topics/${topic.slug}`}>{topic.slug}</Link>
-            </h5>
+            </h3>
             <p>{topic.description}</p>
           </li>
         );

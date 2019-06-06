@@ -26,11 +26,11 @@ export const getArticleById = id => {
   });
 };
 
-export const getCommentsByArticleId = id => {
+export const getCommentsByArticleId = (id, params) => {
   return axios
-    .get(baseUrl + 'articles/' + id + '/comments')
-    .then(({ data: { comments } }) => {
-      return comments;
+    .get(baseUrl + 'articles/' + id + '/comments', { params })
+    .then(({ data }) => {
+      return data;
     });
 };
 
