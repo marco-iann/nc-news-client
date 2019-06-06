@@ -30,7 +30,11 @@ class CommentView extends React.Component {
             </button>
           </>
         )}
-        {author === loggedInUser && <button>Delete comment</button>}
+        {author === loggedInUser && (
+          <button onClick={() => this.props.removeComment(comment.comment_id)}>
+            Delete comment
+          </button>
+        )}
       </div>
     );
   }

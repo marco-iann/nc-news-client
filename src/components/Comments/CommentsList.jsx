@@ -1,24 +1,24 @@
 import React from 'react';
 import CommentView from './CommentView';
 import AddComment from '../Comments/AddComment';
-import { getCommentsByArticleId, postComment } from '../../api';
+import { getCommentsByArticleId, postComment, deleteComment } from '../../api';
 
 class CommentsList extends React.Component {
-  state = { comments: [] };
+  state = { comments: [], commentsCount: 0 };
 
   componentDidMount() {
     const articleId = this.props.articleId;
     getCommentsByArticleId(articleId).then(comments =>
-      this.setState({ comments })
+      this.setState({ comments, commentsCount: +this.props.commentsCount })
     );
   }
 
   render() {
-    const { comments } = this.state;
+    const { comments, commentsCount } = this.state;
     const { loggedInUser } = this.props;
     return (
       <div>
-        <h5>Comments: {this.props.commentsCount}</h5>
+        <h5>Comments: {commentsCount}</h5>
         {comments.map(comment => {
           const { comment_id } = comment;
           return (
@@ -26,6 +26,7 @@ class CommentsList extends React.Component {
               key={`comment${comment_id}`}
               comment={comment}
               loggedInUser={this.props.loggedInUser}
+              removeComment={this.removeComment}
             />
           );
         })}
@@ -42,7 +43,22 @@ class CommentsList extends React.Component {
     }).then(comment => {
       const comments = this.state.comments;
       comments.unshift(comment);
-      this.setState({ comments });
+      this.setState(prevState => ({
+        comments,
+        commentsCount: prevState.commentsCount + 1
+      }));
+    });
+  };
+
+  removeComment = id => {
+    deleteComment(id).then(() => {
+      const articleId = this.props.articleId;
+      getCommentsByArticleId(articleId).then(comments =>
+        this.setState(prevState => ({
+          comments,
+          commentsCount: prevState.commentsCount - 1
+        }))
+      );
     });
   };
 }
