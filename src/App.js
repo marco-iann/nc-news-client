@@ -14,6 +14,10 @@ import Error from './components/Error';
 class App extends React.Component {
   state = { loggedInUser: null };
 
+  componentDidMount() {
+    if (localStorage.loggedInUser) this.setUser(localStorage.loggedInUser);
+  }
+
   render() {
     const { loggedInUser } = this.state;
     return (
@@ -29,9 +33,9 @@ class App extends React.Component {
           />
           <ArticlesPage path="topics/:topic" loggedInUser={loggedInUser} />
           <AddArticle path="/addArticle" loggedInUser={loggedInUser} />
-          <Dashboard path="dashboard" loggedInUser={loggedInUser} />
-          <LoginPage path="login" logIn={this.setUser} />
-          <SignInPage path="signin" logIn={this.setUser} />
+          <Dashboard path="/dashboard" loggedInUser={loggedInUser} />
+          <LoginPage path="/login" logIn={this.setUser} />
+          <SignInPage path="/signin" logIn={this.setUser} />
           <Error default />
         </Router>
       </div>
@@ -39,12 +43,14 @@ class App extends React.Component {
   }
 
   setUser = user => {
+    localStorage.setItem('loggedInUser', user);
     this.setState({ loggedInUser: user });
     navigate('/dashboard');
   };
 
   logOut = () => {
     this.setUser(null);
+    localStorage.removeItem('loggeInUser');
     navigate('/login');
   };
 }
