@@ -1,4 +1,5 @@
 import React from 'react';
+import './UserPages.css';
 import { Link } from '@reach/router';
 import { checkUsername } from '../../api';
 
@@ -9,7 +10,7 @@ class LoginPage extends React.Component {
     const { err } = this.state;
     return (
       <div className="ui container segment">
-        <h2 className="page-title">Login</h2>
+        <h2>Login</h2>
         <form className="ui form" onSubmit={this.logInUser}>
           <div className="field">
             <label>
@@ -28,7 +29,7 @@ class LoginPage extends React.Component {
           </div>
           <button className="ui button">Login</button>
         </form>
-        {err && <p>Username does not exist</p>}
+        {err && <p className="login-error-message">Username does not exist</p>}
       </div>
     );
   }

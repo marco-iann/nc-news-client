@@ -1,9 +1,9 @@
 import React from 'react';
-import { navigate } from '@reach/router';
+import avatar from '../../res/avatar.jpg';
 import { checkUsername } from '../../api';
 
 class Dashboard extends React.Component {
-  state = { user: [] };
+  state = { user: null };
 
   componentDidMount() {
     checkUsername(this.props.loggedInUser).then(user =>
@@ -13,13 +13,13 @@ class Dashboard extends React.Component {
 
   render() {
     const { user } = this.state;
-    if (!user) navigate('login');
+    if (!user) return <div className="ui container segment">Please log in</div>;
     return user ? (
       <div className="ui container segment">
         <h2>{user.username}'s Dashboard</h2>
         <div className="ui card">
           <div className="image">
-            <img src={user.avatar_url} alt={user.username} />
+            <img src={user.avatar_url || avatar} alt={user.username} />
           </div>
           <div className="content">
             <h4>{user.name}</h4>

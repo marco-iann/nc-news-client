@@ -7,7 +7,7 @@ class SignInPage extends React.Component {
     return (
       <div className="ui container segment">
         <h2>Register</h2>
-        <form className="ui form">
+        <form className="ui form" onSubmit={this.register}>
           <div className="field">
             <label>
               Username
@@ -16,6 +16,7 @@ class SignInPage extends React.Component {
                 type="text"
                 placeholder="Username"
                 onChange={this.saveInput}
+                required={true}
               />
             </label>
           </div>
@@ -27,12 +28,11 @@ class SignInPage extends React.Component {
                 type="text"
                 placeholder="Full Name"
                 onChange={this.saveInput}
+                required={true}
               />
             </label>
           </div>
-          <button className="ui button" onClick={this.register}>
-            Register
-          </button>
+          <button className="ui button">Register</button>
         </form>
       </div>
     );
