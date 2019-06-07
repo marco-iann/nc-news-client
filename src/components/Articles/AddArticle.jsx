@@ -1,5 +1,6 @@
 import React from 'react';
 import { navigate } from '@reach/router';
+import './Articles.css';
 import { getTopics, postArticle } from '../../api';
 
 class AddArticle extends React.Component {
@@ -55,10 +56,12 @@ class AddArticle extends React.Component {
               })}
             </select>
           </div>
-          <button className="ui button">
-            <i class="icon edit" />
-            Post
-          </button>
+          <div className="post-article-button">
+            <button className="ui blue button" onClick={this.submitArticle}>
+              <i class="icon edit" />
+              Post
+            </button>
+          </div>
         </form>
       </div>
     );

@@ -1,0 +1,36 @@
+.articles-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.article:hover {
+  transform: scale(1.01);
+}
+
+.article-link:focus {
+  outline: 0;
+}
+
+.author {
+  color: black;
+  margin: 0;
+}
+
+.date {
+  color: black;
+}
+
+.post-article-button {
+  text-align: center;
+}
+
+.icons {
+  color: black;
+  display: inline;
+  margin-right: 10px;
+}
+
+.page-buttons {
+  text-align: center;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticlesList from './ArticlesList';
-// import './Articles.css';
+import './Articles.css';
 import { Link } from '@reach/router';
 import { getArticles } from '../../api';
 
@@ -35,7 +35,15 @@ class ArticlesPage extends React.Component {
     const pages = Array.from({ length: Math.ceil(articles_count / 10) });
     return (
       <div className="ui container segment">
-        <h2>Articles</h2>
+        <div className="articles-header">
+          <h2>Articles</h2>
+          {loggedInUser && (
+            <Link className="ui button blue" to="/addArticle">
+              <i class="icon edit" />
+              Post new article
+            </Link>
+          )}
+        </div>
         <form className="ui form">
           <div className="field">
             <label>
@@ -49,20 +57,22 @@ class ArticlesPage extends React.Component {
           </div>
         </form>
         <ArticlesList articles={articles} />
-        {pages.length > 1 &&
-          pages.map((page, i) => {
-            const currentPage = i + 1;
-            return (
-              <button
-                key={`page${currentPage}`}
-                onClick={() => this.updatePage(currentPage)}
-                disabled={currentPage === this.state.p}
-              >
-                {currentPage}
-              </button>
-            );
-          })}
-        {loggedInUser && <Link to="/addArticle">New Article</Link>}
+        <div className="page-buttons">
+          {pages.length > 1 &&
+            pages.map((page, i) => {
+              const currentPage = i + 1;
+              return (
+                <button
+                  className="ui small basic icon button"
+                  key={`page${currentPage}`}
+                  onClick={() => this.updatePage(currentPage)}
+                  disabled={currentPage === this.state.p}
+                >
+                  {currentPage}
+                </button>
+              );
+            })}
+        </div>
       </div>
     );
   }

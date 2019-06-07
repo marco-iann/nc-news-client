@@ -42,7 +42,8 @@ class ArticleView extends React.Component {
           <p className="date">{moment(created_at).fromNow()}</p>
           <p>{body}</p>
           <p>
-            <i className="like red icon" /> Votes: {votes + voteChange}
+            <i className="like red icon" />
+            {votes + voteChange}
           </p>
           {loggedInUser && (
             <>
