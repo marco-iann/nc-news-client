@@ -8,20 +8,22 @@ class LoginPage extends React.Component {
   render() {
     const { err } = this.state;
     return (
-      <div>
-        <h3>Login</h3>
+      <div className="page-content">
+        <h2 className="page-title">Login</h2>
         <form onSubmit={this.logInUser}>
-          <label>
-            Username
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={this.saveUserInput}
-              value={this.state.userInput}
-              required={true}
-            />
-          </label>
-          <button>Login</button>
+          <div>
+            <label>
+              Username
+              <input
+                type="text"
+                placeholder="Username"
+                onChange={this.saveUserInput}
+                value={this.state.userInput}
+                required={true}
+              />
+            </label>
+          </div>
+          <button className="ui-button">Login</button>
         </form>
         {err && <p>Username does not exist</p>}
         <p>

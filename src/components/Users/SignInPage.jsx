@@ -5,8 +5,8 @@ class SignInPage extends React.Component {
   state = { username: '', name: '' };
   render() {
     return (
-      <div>
-        <h3>Register</h3>
+      <div className="page-content">
+        <h2 className="page-title">Register</h2>
         <form>
           <label>
             Username

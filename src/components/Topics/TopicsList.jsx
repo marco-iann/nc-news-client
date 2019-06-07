@@ -8,7 +8,9 @@ const TopicsList = ({ topics }) => {
         return (
           <li key={`topic${i}`}>
             <h3>
-              <Link to={`/topics/${topic.slug}`}>{topic.slug}</Link>
+              <Link className="entry" to={`/topics/${topic.slug}`}>
+                {topic.slug}
+              </Link>
             </h3>
             <p>{topic.description}</p>
           </li>

@@ -14,3 +14,20 @@ body {
 ul {
   list-style-type: none;
 }
+
+.page-content {
+  padding: 20px;
+  margin-left: 10px;
+}
+
+.page-title {
+}
+
+.entry {
+  color: #ee7655;
+  text-decoration: none;
+}
+
+.entry:hover {
+  color: white;
+}

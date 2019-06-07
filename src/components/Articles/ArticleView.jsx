@@ -31,15 +31,15 @@ class ArticleView extends React.Component {
     if (err) return <Error err={err} />;
     return (
       selectedArticle && (
-        <div>
-          <h3>{title}</h3>
+        <div className="page-content">
+          <h2 className="article-title">{title}</h2>
           {author === loggedInUser && (
             <button onClick={() => this.removeArticle(article_id)}>
               Delete article
             </button>
           )}
-          <h6>{author}</h6>
-          <p>{moment(created_at).fromNow()}</p>
+          <h6 className="author">{author}</h6>
+          <p className="date">{moment(created_at).fromNow()}</p>
           <p>{body}</p>
           <p>Votes: {votes + voteChange}</p>
           {loggedInUser && (

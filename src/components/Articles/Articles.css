@@ -1,0 +1,24 @@
+.sorting-menu {
+  text-align: right;
+}
+
+.article-title {
+  color: #e87655;
+  margin-bottom: 5px;
+}
+
+.article-link {
+  text-decoration: none;
+}
+
+.article-link:focus {
+  outline: 0;
+}
+
+.author {
+  margin: 0px;
+}
+
+.date {
+  margin: 0px;
+}

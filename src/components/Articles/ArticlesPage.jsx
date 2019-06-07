@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticlesList from './ArticlesList';
+import './Articles.css';
 import { Link } from '@reach/router';
 import { getArticles } from '../../api';
 
@@ -33,10 +34,10 @@ class ArticlesPage extends React.Component {
     const { loggedInUser } = this.props;
     const pages = Array.from({ length: Math.ceil(articles_count / 10) });
     return (
-      <div>
-        <h3>Articles</h3>
-        <form>
-          <label>
+      <div className="page-content">
+        <h2 className="page-title">Articles</h2>
+        <form className="sorting-menu">
+          <label className="sorting-label">
             Order:
             <select onChange={this.updateSorting}>
               <option value="created_at">Newest</option>
