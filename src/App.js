@@ -50,7 +50,7 @@ class App extends React.Component {
 
   logOut = () => {
     this.setUser(null);
-    localStorage.removeItem('loggeInUser');
+    localStorage.removeItem('loggedInUser');
     navigate('/login');
   };
 }
