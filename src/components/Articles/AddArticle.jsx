@@ -14,29 +14,53 @@ class AddArticle extends React.Component {
   render() {
     const { topics, title, body } = this.state;
     return (
-      <form onSubmit={this.submitArticle}>
-        <input
-          name="title"
-          placeholder="Title"
-          type="text"
-          value={title}
-          onChange={this.saveInput}
-          required={true}
-        />
-        <textarea
-          name="body"
-          placeholder="Article text here"
-          value={body}
-          onChange={this.saveInput}
-          required={true}
-        />
-        <select onChange={this.selectTopic}>
-          {topics.map((topic, i) => {
-            return <option key={`topic${i}`}>{topic.slug}</option>;
-          })}
-        </select>
-        <button>Post</button>
-      </form>
+      <div className="ui container segment">
+        <form className="ui form" onSubmit={this.submitArticle}>
+          <div className="field">
+            <label>
+              Title
+              <input
+                name="title"
+                placeholder="Title"
+                type="text"
+                value={title}
+                onChange={this.saveInput}
+                required={true}
+              />
+            </label>
+          </div>
+          <div className="field">
+            <label>
+              Article
+              <textarea
+                name="body"
+                placeholder="Article text here"
+                value={body}
+                onChange={this.saveInput}
+                required={true}
+              />
+            </label>
+          </div>
+          <div className="field">
+            <select
+              className="ui fluid selection dropdown"
+              onChange={this.selectTopic}
+            >
+              {topics.map((topic, i) => {
+                return (
+                  <option value={i} key={`topic${i}`}>
+                    {topic.slug}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <button className="ui button">
+            <i class="icon edit" />
+            Post
+          </button>
+        </form>
+      </div>
     );
   }
 

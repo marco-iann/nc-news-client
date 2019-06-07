@@ -1,6 +1,6 @@
 import React from 'react';
 import ArticlesList from './ArticlesList';
-import './Articles.css';
+// import './Articles.css';
 import { Link } from '@reach/router';
 import { getArticles } from '../../api';
 
@@ -34,17 +34,19 @@ class ArticlesPage extends React.Component {
     const { loggedInUser } = this.props;
     const pages = Array.from({ length: Math.ceil(articles_count / 10) });
     return (
-      <div className="page-content">
-        <h2 className="page-title">Articles</h2>
-        <form className="sorting-menu">
-          <label className="sorting-label">
-            Order:
-            <select onChange={this.updateSorting}>
-              <option value="created_at">Newest</option>
-              <option value="comments_count">Most Commented</option>
-              <option value="votes">Most Voted</option>
-            </select>
-          </label>
+      <div className="ui container segment">
+        <h2>Articles</h2>
+        <form className="ui form">
+          <div className="field">
+            <label>
+              Order:
+              <select className="ui dropdown" onChange={this.updateSorting}>
+                <option value="created_at">Newest</option>
+                <option value="comments_count">Most Commented</option>
+                <option value="votes">Most Voted</option>
+              </select>
+            </label>
+          </div>
         </form>
         <ArticlesList articles={articles} />
         {pages.length > 1 &&

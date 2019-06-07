@@ -31,8 +31,8 @@ class ArticleView extends React.Component {
     if (err) return <Error err={err} />;
     return (
       selectedArticle && (
-        <div className="page-content">
-          <h2 className="article-title">{title}</h2>
+        <div className="ui container segment">
+          <h2>{title}</h2>
           {author === loggedInUser && (
             <button onClick={() => this.removeArticle(article_id)}>
               Delete article
@@ -41,20 +41,30 @@ class ArticleView extends React.Component {
           <h6 className="author">{author}</h6>
           <p className="date">{moment(created_at).fromNow()}</p>
           <p>{body}</p>
-          <p>Votes: {votes + voteChange}</p>
+          <p>
+            <i className="like red icon" /> Votes: {votes + voteChange}
+          </p>
           {loggedInUser && (
             <>
               <button
+                className="ui vertical animated button"
                 disabled={voteChange === 1}
                 onClick={() => this.handleVote(1)}
               >
-                Upvote
+                <div className="hidden content">Like</div>
+                <div className="visible content">
+                  <i className="thumbs up icon" />
+                </div>
               </button>
               <button
+                className="ui vertical animated button"
                 disabled={voteChange === -1}
                 onClick={() => this.handleVote(-1)}
               >
-                Downvote
+                <div className="hidden content">Dislike</div>
+                <div className="visible content">
+                  <i className="thumbs down icon" />
+                </div>
               </button>
             </>
           )}
