@@ -58,7 +58,7 @@ class AddArticle extends React.Component {
           </div>
           <div className="post-article-button">
             <button className="ui blue button" onClick={this.submitArticle}>
-              <i class="icon edit" />
+              <i className="icon edit" />
               Post
             </button>
           </div>
