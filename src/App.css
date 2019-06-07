@@ -1,33 +1,4 @@
-body {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  background-color: black;
-}
-
-.app {
-  width: 1000px;
-  min-height: 100vh;
-  margin: auto;
-  color: white;
-  background-color: #323234;
-}
-
 ul {
   list-style-type: none;
-}
-
-.page-content {
-  padding: 20px;
-  margin-left: 10px;
-}
-
-.page-title {
-}
-
-.entry {
-  color: #ee7655;
-  text-decoration: none;
-}
-
-.entry:hover {
-  color: white;
+  padding-left: 15px;
 }

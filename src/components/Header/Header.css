@@ -2,45 +2,17 @@
   position: relative;
 }
 
-h1 {
-  padding: 40px;
-  color: #ee7655;
-  text-align: center;
-  margin: auto;
-}
-
-.links {
-  text-align: center;
-  background-color: black;
-  padding: 20px;
-}
-
-.link {
-  text-decoration: none;
-  padding: 20px;
-  color: white;
-}
-
-.link:hover {
-  color: #ee7655;
-}
-
-.link:focus {
-  outline: 0;
-}
-
-.logout-button {
-  background: none;
-  border: none;
-  font-size: 1em;
-  color: white;
-  padding: 0 20px;
-  cursor: pointer;
-}
-
 .logged-in-user {
   font-size: 10px;
   position: absolute;
-  bottom: 60px;
-  right: 20px;
+  bottom: 15px;
+  left: 0px;
+}
+
+.logout {
+  cursor: pointer;
+}
+
+.link {
+  margin-right: 20px;
 }

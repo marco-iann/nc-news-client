@@ -4,10 +4,10 @@ import { Link } from '@reach/router';
 
 const Header = ({ user, logOut }) => {
   return (
-    <div className="header">
+    <div className="header ui container">
       <h1>Northcoders News</h1>
       {user && <p className="logged-in-user">You are logged in as {user}</p>}
-      <div className="links">
+      <div>
         <Link className="link" to="/topics">
           Topics
         </Link>
@@ -18,13 +18,11 @@ const Header = ({ user, logOut }) => {
           Dashboard
         </Link>
         {user ? (
-          <button className="logout-button" onClick={logOut}>
+          <a className="link logout" onClick={logOut}>
             Logout
-          </button>
+          </a>
         ) : (
-          <Link className="link" to="/login">
-            Login
-          </Link>
+          <Link to="/login">Login</Link>
         )}
       </div>
     </div>
