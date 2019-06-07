@@ -15,10 +15,16 @@ class Dashboard extends React.Component {
     const { user } = this.state;
     if (!user) navigate('login');
     return user ? (
-      <div className="page-content">
+      <div className="ui container segment">
         <h2>{user.username}'s Dashboard</h2>
-        <img src={user.avatar_url} alt={user.username} />
-        <h4>{user.name}</h4>
+        <div className="ui card">
+          <div className="image">
+            <img src={user.avatar_url} alt={user.username} />
+          </div>
+          <div className="content">
+            <h4>{user.name}</h4>
+          </div>
+        </div>
       </div>
     ) : null;
   }

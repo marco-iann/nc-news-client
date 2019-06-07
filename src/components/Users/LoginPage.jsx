@@ -8,10 +8,10 @@ class LoginPage extends React.Component {
   render() {
     const { err } = this.state;
     return (
-      <div className="page-content">
+      <div className="ui container segment">
         <h2 className="page-title">Login</h2>
-        <form onSubmit={this.logInUser}>
-          <div>
+        <form className="ui form" onSubmit={this.logInUser}>
+          <div className="field">
             <label>
               Username
               <input
@@ -22,13 +22,13 @@ class LoginPage extends React.Component {
                 required={true}
               />
             </label>
+            <p>
+              Not yet registered? <Link to="/signin">Sign In</Link>
+            </p>
           </div>
-          <button className="ui-button">Login</button>
+          <button className="ui button">Login</button>
         </form>
         {err && <p>Username does not exist</p>}
-        <p>
-          Not yet registered? <Link to="/signin">Sign In</Link>
-        </p>
       </div>
     );
   }
