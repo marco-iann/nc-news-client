@@ -12,7 +12,10 @@ class AddComment extends React.Component {
           placeholder="Write your comment here"
           required={true}
         />
-        <button>Post</button>
+        <button className="ui button">
+          <i class="icon edit" />
+          Post
+        </button>
       </form>
     );
   }

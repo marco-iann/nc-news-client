@@ -10,24 +10,34 @@ class CommentView extends React.Component {
     const { loggedInUser } = this.props;
     const { author, body, created_at, votes } = comment ? comment : {};
     return (
-      <li>
+      <li className="ui segment">
         <h5>{author}</h5>
         <p>{moment(created_at).fromNow()}</p>
         <p>{body}</p>
-        <p>Votes: {votes + voteChange}</p>
+        <p>
+          <i className="like red icon" /> Votes: {votes + voteChange}
+        </p>
         {loggedInUser && (
           <>
             <button
+              className="ui vertical animated button"
               disabled={voteChange === 1}
               onClick={() => this.handleVote(1)}
             >
-              Upvote
+              <div className="hidden content">Like</div>
+              <div className="visible content">
+                <i className="thumbs up icon" />
+              </div>
             </button>
             <button
+              className="ui vertical animated button"
               disabled={voteChange === -1}
               onClick={() => this.handleVote(-1)}
             >
-              Downvote
+              <div className="hidden content">Dislike</div>
+              <div className="visible content">
+                <i className="thumbs down icon" />
+              </div>
             </button>
           </>
         )}

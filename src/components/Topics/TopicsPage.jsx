@@ -12,8 +12,8 @@ class TopicsPage extends React.Component {
   render() {
     const { topics } = this.state;
     return (
-      <div className="page-content">
-        <h2 className="page-title">Topics</h2>
+      <div className="ui container segment">
+        <h2>Topics</h2>
         <ul>
           <TopicsList topics={topics} />
         </ul>
