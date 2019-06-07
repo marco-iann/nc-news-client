@@ -39,7 +39,7 @@ class ArticlesPage extends React.Component {
           <h2>Articles</h2>
           {loggedInUser && (
             <Link className="ui button blue" to="/addArticle">
-              <i class="icon edit" />
+              <i className="icon edit" />
               Post new article
             </Link>
           )}
