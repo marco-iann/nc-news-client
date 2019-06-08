@@ -1,0 +1,16 @@
+.comments-box {
+  margin-top: 15px;
+}
+
+.comment-buttons {
+  display: flex;
+}
+
+.post-comment-button {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.page-buttons {
+  text-align: center;
+}

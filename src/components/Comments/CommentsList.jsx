@@ -27,8 +27,9 @@ class CommentsList extends React.Component {
     const { loggedInUser } = this.props;
     const pages = Array.from({ length: Math.ceil(commentsCount / 10) });
     return (
-      <div>
+      <div className="comments-box">
         <h5>Comments: {commentsCount}</h5>
+        {loggedInUser && <AddComment addComment={this.addComment} />}
         <ul>
           {comments.map(comment => {
             const { comment_id } = comment;
@@ -42,20 +43,22 @@ class CommentsList extends React.Component {
             );
           })}
         </ul>
-        {pages.length > 1 &&
-          pages.map((page, i) => {
-            const currentPage = i + 1;
-            return (
-              <button
-                key={`page${currentPage}`}
-                onClick={() => this.updatePage(currentPage)}
-                disabled={currentPage === this.state.p}
-              >
-                {currentPage}
-              </button>
-            );
-          })}
-        {loggedInUser && <AddComment addComment={this.addComment} />}
+        <div className="page-buttons">
+          {pages.length > 1 &&
+            pages.map((page, i) => {
+              const currentPage = i + 1;
+              return (
+                <button
+                  className="ui small basic icon button"
+                  key={`page${currentPage}`}
+                  onClick={() => this.updatePage(currentPage)}
+                  disabled={currentPage === this.state.p}
+                >
+                  {currentPage}
+                </button>
+              );
+            })}
+        </div>
       </div>
     );
   }

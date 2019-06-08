@@ -15,10 +15,11 @@ class CommentView extends React.Component {
         <p>{moment(created_at).fromNow()}</p>
         <p>{body}</p>
         <p>
-          <i className="like red icon" /> Votes: {votes + voteChange}
+          <i className="like red icon" />
+          {votes + voteChange}
         </p>
         {loggedInUser && (
-          <>
+          <div className="comment-buttons">
             <button
               className="ui vertical animated button"
               disabled={voteChange === 1}
@@ -39,12 +40,15 @@ class CommentView extends React.Component {
                 <i className="thumbs down icon" />
               </div>
             </button>
-          </>
-        )}
-        {author === loggedInUser && (
-          <button onClick={() => this.props.removeComment(comment.comment_id)}>
-            Delete comment
-          </button>
+            {author === loggedInUser && (
+              <button
+                className="ui button vertical red"
+                onClick={() => this.props.removeComment(comment.comment_id)}
+              >
+                Delete
+              </button>
+            )}
+          </div>
         )}
       </li>
     );

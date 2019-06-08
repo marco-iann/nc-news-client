@@ -1,21 +1,24 @@
 import React from 'react';
+import './Comments.css';
 
 class AddComment extends React.Component {
   state = { commentInput: '' };
   render() {
     const { commentInput } = this.state;
     return (
-      <form onSubmit={this.postComment}>
+      <form className="ui form" onSubmit={this.postComment}>
         <textarea
           onChange={this.saveInput}
           value={commentInput}
           placeholder="Write your comment here"
           required={true}
         />
-        <button className="ui button">
-          <i class="icon edit" />
-          Post
-        </button>
+        <div className="post-comment-button">
+          <button className="ui blue button">
+            <i className="icon edit" />
+            Post
+          </button>
+        </div>
       </form>
     );
   }
