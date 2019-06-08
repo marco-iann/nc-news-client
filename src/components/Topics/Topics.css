@@ -1,0 +1,7 @@
+.topic:hover {
+  transform: scale(1.01);
+}
+
+.topic-description {
+  color: black;
+}
