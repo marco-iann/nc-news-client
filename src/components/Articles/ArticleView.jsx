@@ -33,11 +33,6 @@ class ArticleView extends React.Component {
       selectedArticle && (
         <div className="ui container segment">
           <h2>{title}</h2>
-          {author === loggedInUser && (
-            <button onClick={() => this.removeArticle(article_id)}>
-              Delete article
-            </button>
-          )}
           <h6 className="author">{author}</h6>
           <p className="date">{moment(created_at).fromNow()}</p>
           <p>{body}</p>
@@ -46,7 +41,7 @@ class ArticleView extends React.Component {
             {votes + voteChange}
           </p>
           {loggedInUser && (
-            <>
+            <div className="article-buttons">
               <button
                 className="ui vertical animated button"
                 disabled={voteChange === 1}
@@ -67,7 +62,15 @@ class ArticleView extends React.Component {
                   <i className="thumbs down icon" />
                 </div>
               </button>
-            </>
+              {author === loggedInUser && (
+                <button
+                  className="ui button red"
+                  onClick={() => this.removeArticle(article_id)}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
           )}
           <CommentsList
             articleId={this.props.article_id}
