@@ -1,5 +1,9 @@
-.topic:hover {
+.topic-box:hover {
   transform: scale(1.01);
+}
+
+.topic:focus {
+  outline: 0;
 }
 
 .topic-description {

@@ -17,3 +17,7 @@
 .link {
   margin-right: 20px;
 }
+
+.link:focus {
+  outline: 0;
+}
