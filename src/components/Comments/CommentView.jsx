@@ -43,7 +43,7 @@ class CommentView extends React.Component {
             {author === loggedInUser && (
               <button
                 className="ui button vertical red"
-                onClick={() => this.props.removeComment(comment.comment_id)}
+                onClick={() => this.props.deleteComment(comment.comment_id)}
               >
                 Delete
               </button>

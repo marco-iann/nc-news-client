@@ -1,7 +1,7 @@
 import React from 'react';
 import CommentView from './CommentView';
 import NewComment from '../Comments/NewComment';
-import { getCommentsByArticleId, postComment, deleteComment } from '../../api';
+import { getCommentsByArticleId, postComment, remove } from '../../api';
 
 class CommentsList extends React.Component {
   state = { comments: [], commentsCount: 0, p: 1 };
@@ -38,7 +38,7 @@ class CommentsList extends React.Component {
                 key={`comment${comment_id}`}
                 comment={comment}
                 loggedInUser={this.props.loggedInUser}
-                removeComment={this.removeComment}
+                deleteComment={this.deleteComment}
               />
             );
           })}
@@ -78,8 +78,8 @@ class CommentsList extends React.Component {
     });
   };
 
-  removeComment = id => {
-    deleteComment(id).then(() => {
+  deleteComment = id => {
+    remove('comment', id).then(() => {
       const articleId = this.props.articleId;
       getCommentsByArticleId(articleId).then(({ comments }) =>
         this.setState(prevState => ({

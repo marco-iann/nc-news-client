@@ -56,12 +56,8 @@ export const addUser = user => {
   });
 };
 
-export const deleteArticle = id => {
-  return axios.delete(baseUrl + 'articles/' + id);
-};
-
-export const deleteComment = id => {
-  return axios.delete(baseUrl + 'comments/' + id);
+export const remove = (type, id) => {
+  return axios.delete(`${baseUrl}${type}s/${id}`);
 };
 
 export const patchArticle = (id, direction) => {

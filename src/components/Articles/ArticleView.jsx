@@ -1,7 +1,7 @@
 import React from 'react';
 import { navigate } from '@reach/router';
 import moment from 'moment';
-import { getArticleById, patchArticle, deleteArticle } from '../../api';
+import { getArticleById, patchArticle, remove } from '../../api';
 import CommentsList from '../Comments/CommentsList';
 import Error from '../Error';
 
@@ -65,7 +65,7 @@ class ArticleView extends React.Component {
               {author === loggedInUser && (
                 <button
                   className="ui button red"
-                  onClick={() => this.removeArticle(article_id)}
+                  onClick={() => this.deleteArticle(article_id)}
                 >
                   Delete
                 </button>
@@ -93,8 +93,8 @@ class ArticleView extends React.Component {
     );
   };
 
-  removeArticle = article_id => {
-    deleteArticle(article_id).then(() => navigate('/articles'));
+  deleteArticle = article_id => {
+    remove('article', article_id).then(() => navigate('/articles'));
   };
 }
 
