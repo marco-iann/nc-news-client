@@ -23,13 +23,15 @@ class LoginPage extends React.Component {
                 required={true}
               />
             </label>
+            {err && (
+              <p className="login-error-message">Username does not exist</p>
+            )}
             <p>
               Not yet registered? <Link to="/signin">Sign In</Link>
             </p>
           </div>
           <button className="ui button">Login</button>
         </form>
-        {err && <p className="login-error-message">Username does not exist</p>}
       </div>
     );
   }

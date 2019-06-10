@@ -1,5 +1,6 @@
 import React from 'react';
 import { addUser } from '../../api';
+import { navigate } from '@reach/router';
 
 class SignInPage extends React.Component {
   state = { username: '', name: '' };
@@ -46,6 +47,7 @@ class SignInPage extends React.Component {
     e.preventDefault();
     addUser(this.state).then(newUser => {
       this.props.logIn(newUser);
+      navigate('/dashboard');
     });
   };
 }
