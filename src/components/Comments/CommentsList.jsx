@@ -1,6 +1,6 @@
 import React from 'react';
 import CommentView from './CommentView';
-import AddComment from '../Comments/AddComment';
+import NewComment from '../Comments/NewComment';
 import { getCommentsByArticleId, postComment, deleteComment } from '../../api';
 
 class CommentsList extends React.Component {
@@ -29,7 +29,7 @@ class CommentsList extends React.Component {
     return (
       <div className="comments-box">
         <h5>Comments: {commentsCount}</h5>
-        {loggedInUser && <AddComment addComment={this.addComment} />}
+        {loggedInUser && <NewComment addComment={this.addComment} />}
         <ul>
           {comments.map(comment => {
             const { comment_id } = comment;
