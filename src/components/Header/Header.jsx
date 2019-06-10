@@ -18,10 +18,9 @@ const Header = ({ user, logOut }) => {
           Dashboard
         </Link>
         {user ? (
-          // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <a className="link logout" onClick={logOut}>
+          <span className="link logout" onClick={logOut}>
             Logout
-          </a>
+          </span>
         ) : (
           <Link to="/login">Login</Link>
         )}
