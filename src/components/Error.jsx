@@ -5,12 +5,18 @@ const Error = ({ err }) => {
     const status = err.response.status;
     const msg = err.response.data.msg;
     return (
-      <h2>
-        {status} - {msg}
-      </h2>
+      <div className="ui container segment">
+        <h2>
+          {status} - {msg}
+        </h2>
+      </div>
     );
   }
-  return <div>404 - Page not found</div>;
+  return (
+    <div className="ui container segment">
+      <h2>404 - page not found</h2>
+    </div>
+  );
 };
 
 export default Error;

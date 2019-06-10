@@ -1,6 +1,6 @@
 import React from 'react';
 import './UserPages.css';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import { checkUsername } from '../../api';
 
 class LoginPage extends React.Component {
@@ -44,6 +44,7 @@ class LoginPage extends React.Component {
       .then(userToLogIn => {
         this.props.logIn(userToLogIn);
         this.setState({ userInput: '' });
+        navigate('/dashboard');
       })
       .catch(err => this.setState({ userInput: '', err }));
   };

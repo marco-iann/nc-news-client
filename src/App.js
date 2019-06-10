@@ -26,7 +26,6 @@ class App extends React.Component {
       <div className="app">
         <Header user={user} logOut={this.logOut} />
         <Router>
-          <LoginPage path="/" logIn={this.setUser} />
           <TopicsPage path="topics" />
           <ArticlesPage path="articles" loggedInUser={user} />
           <ArticleView path="articles/:article_id" loggedInUser={user} />
@@ -45,7 +44,6 @@ class App extends React.Component {
     const userToSave = user ? JSON.stringify(user) : null;
     localStorage.setItem('loggedInUser', userToSave);
     this.setState({ loggedInUser: user });
-    navigate('/dashboard');
   };
 
   logOut = () => {
