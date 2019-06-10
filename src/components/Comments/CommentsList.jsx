@@ -9,7 +9,7 @@ class CommentsList extends React.Component {
   componentDidMount() {
     const articleId = this.props.articleId;
     getCommentsByArticleId(articleId).then(({ comments }) =>
-      this.setState({ comments, commentsCount: +this.props.commentsCount })
+      this.setState({ comments, commentsChange: 0 })
     );
   }
 
@@ -17,14 +17,15 @@ class CommentsList extends React.Component {
     const { p } = this.state;
     if (prevState.p !== p) {
       getCommentsByArticleId(this.props.articleId, { p }).then(({ comments }) =>
-        this.setState({ comments, commentsCount: this.props.commentsCount })
+        this.setState({ comments })
       );
     }
   }
 
   render() {
-    const { comments, commentsCount } = this.state;
+    const { comments } = this.state;
     const { loggedInUser } = this.props;
+    const commentsCount = +this.props.commentsCount + this.state.commentsChange;
     const pages = Array.from({ length: Math.ceil(commentsCount / 10) });
     return (
       <div className="comments-box">
@@ -73,7 +74,7 @@ class CommentsList extends React.Component {
       comments.unshift(comment);
       this.setState(prevState => ({
         comments,
-        commentsCount: prevState.commentsCount + 1
+        commentsChange: prevState.commentsChange + 1
       }));
     });
   };
@@ -84,7 +85,7 @@ class CommentsList extends React.Component {
       getCommentsByArticleId(articleId).then(({ comments }) =>
         this.setState(prevState => ({
           comments,
-          commentsCount: prevState.commentsCount - 1
+          commentsChange: prevState.commentsChange - 1
         }))
       );
     });
