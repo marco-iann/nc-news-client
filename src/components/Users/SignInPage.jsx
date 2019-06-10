@@ -45,7 +45,7 @@ class SignInPage extends React.Component {
   register = e => {
     e.preventDefault();
     addUser(this.state).then(newUser => {
-      this.props.logIn(newUser.username);
+      this.props.logIn(newUser);
     });
   };
 }

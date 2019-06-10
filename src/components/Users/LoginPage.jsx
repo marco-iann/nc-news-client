@@ -42,7 +42,7 @@ class LoginPage extends React.Component {
     e.preventDefault();
     checkUsername(this.state.userInput)
       .then(userToLogIn => {
-        this.props.logIn(userToLogIn.username);
+        this.props.logIn(userToLogIn);
         this.setState({ userInput: '' });
       })
       .catch(err => this.setState({ userInput: '', err }));

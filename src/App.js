@@ -15,24 +15,23 @@ class App extends React.Component {
   state = { loggedInUser: null };
 
   componentDidMount() {
-    if (localStorage.loggedInUser) this.setUser(localStorage.loggedInUser);
+    if (localStorage.loggedInUser)
+      this.setUser(JSON.parse(localStorage.loggedInUser));
   }
 
   render() {
     const { loggedInUser } = this.state;
+    const user = loggedInUser ? loggedInUser.username : null;
     return (
       <div className="app">
-        <Header user={loggedInUser} logOut={this.logOut} />
+        <Header user={user} logOut={this.logOut} />
         <Router>
           <LoginPage path="/" logIn={this.setUser} />
           <TopicsPage path="topics" />
-          <ArticlesPage path="articles" loggedInUser={loggedInUser} />
-          <ArticleView
-            path="articles/:article_id"
-            loggedInUser={loggedInUser}
-          />
-          <ArticlesPage path="topics/:topic" loggedInUser={loggedInUser} />
-          <AddArticle path="/addArticle" loggedInUser={loggedInUser} />
+          <ArticlesPage path="articles" loggedInUser={user} />
+          <ArticleView path="articles/:article_id" loggedInUser={user} />
+          <ArticlesPage path="topics/:topic" loggedInUser={user} />
+          <AddArticle path="/addArticle" loggedInUser={user} />
           <Dashboard path="/dashboard" loggedInUser={loggedInUser} />
           <LoginPage path="/login" logIn={this.setUser} />
           <SignInPage path="/signin" logIn={this.setUser} />
@@ -43,7 +42,8 @@ class App extends React.Component {
   }
 
   setUser = user => {
-    localStorage.setItem('loggedInUser', user);
+    const userToSave = user ? JSON.stringify(user) : null;
+    localStorage.setItem('loggedInUser', userToSave);
     this.setState({ loggedInUser: user });
     navigate('/dashboard');
   };
