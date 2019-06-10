@@ -8,16 +8,21 @@
   transform: scale(1.01);
 }
 
+.article-title {
+  margin-top: 10px;
+}
+
 .article-link:focus {
   outline: 0;
 }
 
-.author {
+.article-author,
+.article-topic {
   color: black;
   margin: 0;
 }
 
-.date {
+.article-date {
   color: black;
 }
 
