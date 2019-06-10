@@ -11,7 +11,7 @@ const Dashboard = props => {
       <div className="ui card">
         <div className="image">
           <img
-            src={loggedInUser.avata_url || defaultAvatar}
+            src={loggedInUser.avatar_url || defaultAvatar}
             alt={loggedInUser.username}
           />
         </div>
