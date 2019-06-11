@@ -1,10 +1,9 @@
 import React from 'react';
 import defaultAvatar from '../../res/avatar.jpg';
+import { Link } from '@reach/router';
 
 const Dashboard = props => {
   const { loggedInUser } = props;
-  if (!loggedInUser)
-    return <div className="ui container segment">Please log in</div>;
   return loggedInUser ? (
     <div className="ui container segment">
       <h2>{loggedInUser.username}'s Dashboard</h2>
@@ -20,7 +19,11 @@ const Dashboard = props => {
         </div>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <div className="ui container segment">
+      Please <Link to="/login">log in</Link>
+    </div>
+  );
 };
 
 export default Dashboard;
