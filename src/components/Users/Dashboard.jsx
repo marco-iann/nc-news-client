@@ -16,7 +16,7 @@ const Dashboard = props => {
           />
         </div>
         <div className="content">
-          <h4>{loggedInUser.username}</h4>
+          <h4>{loggedInUser.name}</h4>
         </div>
       </div>
     </div>
