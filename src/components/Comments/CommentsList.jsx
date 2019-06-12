@@ -80,7 +80,7 @@ class CommentsList extends React.Component {
   };
 
   deleteComment = id => {
-    remove('comment', id).then(() => {
+    remove('comments', id).then(() => {
       const articleId = this.props.articleId;
       getCommentsByArticleId(articleId).then(({ comments }) =>
         this.setState(prevState => ({

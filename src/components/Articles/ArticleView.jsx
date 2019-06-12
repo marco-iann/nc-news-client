@@ -94,7 +94,7 @@ class ArticleView extends React.Component {
   };
 
   deleteArticle = article_id => {
-    remove('article', article_id).then(() => navigate('/articles'));
+    remove('articles', article_id).then(() => navigate('/articles'));
   };
 }
 
