@@ -1,12 +1,26 @@
+.title {
+  margin-bottom: 20px;
+}
+
+.top-header {
+  height: 75px;
+}
+
 .header {
+  display: flex;
   position: relative;
+}
+
+.logo {
+  width: 130px !important;
+  height: auto;
 }
 
 .logged-in-user {
   font-size: 10px;
   position: absolute;
-  bottom: 15px;
-  left: 0px;
+  top: 55px;
+  left: 130px;
 }
 
 .logout {
