@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticlesList from './ArticlesList';
+import PageButtons from '../PageButtons';
 import './Articles.css';
 import { Link } from '@reach/router';
 import { getArticles } from '../../api';
@@ -30,7 +31,7 @@ class ArticlesPage extends React.Component {
   }
 
   render() {
-    const { articles, articles_count } = this.state;
+    const { articles, articles_count, p } = this.state;
     const { loggedInUser } = this.props;
     const pages = Array.from({ length: Math.ceil(articles_count / 10) });
     return (
@@ -57,22 +58,11 @@ class ArticlesPage extends React.Component {
           </div>
         </form>
         <ArticlesList articles={articles} />
-        <div className="page-buttons">
-          {pages.length > 1 &&
-            pages.map((page, i) => {
-              const currentPage = i + 1;
-              return (
-                <button
-                  className="ui small basic icon button"
-                  key={`page${currentPage}`}
-                  onClick={() => this.updatePage(currentPage)}
-                  disabled={currentPage === this.state.p}
-                >
-                  {currentPage}
-                </button>
-              );
-            })}
-        </div>
+        <PageButtons
+          pages={pages}
+          currentPage={p}
+          updatePage={this.updatePage}
+        />
       </div>
     );
   }

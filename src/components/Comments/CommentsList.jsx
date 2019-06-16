@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentView from './CommentView';
 import NewComment from '../Comments/NewComment';
+import PageButtons from '../PageButtons';
 import { getCommentsByArticleId, postComment, remove } from '../../api';
 
 class CommentsList extends React.Component {
@@ -23,7 +24,7 @@ class CommentsList extends React.Component {
   }
 
   render() {
-    const { comments } = this.state;
+    const { comments, p } = this.state;
     const { loggedInUser } = this.props;
     const commentsCount = +this.props.commentsCount + this.state.commentsChange;
     const pages = Array.from({ length: Math.ceil(commentsCount / 10) });
@@ -44,22 +45,11 @@ class CommentsList extends React.Component {
             );
           })}
         </ul>
-        <div className="page-buttons">
-          {pages.length > 1 &&
-            pages.map((page, i) => {
-              const currentPage = i + 1;
-              return (
-                <button
-                  className="ui small basic icon button"
-                  key={`page${currentPage}`}
-                  onClick={() => this.updatePage(currentPage)}
-                  disabled={currentPage === this.state.p}
-                >
-                  {currentPage}
-                </button>
-              );
-            })}
-        </div>
+        <PageButtons
+          pages={pages}
+          currentPage={p}
+          updatePage={this.updatePage}
+        />
       </div>
     );
   }
