@@ -6,6 +6,8 @@ Northcoders News has articles which are divided into topics. Each article has us
 
 You can visit the hosted project [here](https://marco-iann-nc-news.netlify.com/), hosted on [Netlify](https://www.netlify.com/)
 
+Also, you can find the API [here](https://marco-iann-nc-news-api.herokuapp.com/api/), hosted on [Heroku](https://dashboard.heroku.com), and the link to the GitHub repository [here](https://github.com/marco-iann/nc-news-api)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -38,7 +40,7 @@ Navigate to the repository folder, then install npm packages
 npm install
 ```
 
-## Running development server
+### Running development server
 
 ```
 npm start
