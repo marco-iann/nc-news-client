@@ -7,7 +7,7 @@ import ArticlesPage from './components/Articles/ArticlesPage';
 import ArticleView from './components/Articles/ArticleView';
 import NewArticle from './components/Articles/NewArticle';
 import LoginPage from './components/Users/LoginPage';
-import SignInPage from './components/Users/SignInPage';
+import SignUpPage from './components/Users/SignUpPage';
 import Dashboard from './components/Users/Dashboard';
 import Error from './components/Error';
 
@@ -34,7 +34,7 @@ class App extends React.Component {
           <NewArticle path="/addArticle" loggedInUser={user} />
           <Dashboard path="/dashboard" loggedInUser={loggedInUser} />
           <LoginPage path="/login" logIn={this.setUser} />
-          <SignInPage path="/signin" logIn={this.setUser} />
+          <SignUpPage path="/signup" logIn={this.setUser} />
           <Error default />
         </Router>
       </div>

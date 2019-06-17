@@ -27,7 +27,8 @@ class LoginPage extends React.Component {
               <p className="login-error-message">Username does not exist</p>
             )}
             <p>
-              Not yet registered? <Link to="/signin">Sign In</Link>
+              Need an account? <Link to="/signup">Sign Up</Link> or login as
+              "jessjelly"
             </p>
           </div>
           <button className="ui button">Login</button>
