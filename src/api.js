@@ -70,7 +70,7 @@ export const patchArticle = (id, direction) => {
 
 export const patchComment = (id, direction) => {
   return axios
-    .patch(`${baseUrl}articles/${id}`, { inc_votes: direction })
+    .patch(`${baseUrl}comments/${id}`, { inc_votes: direction })
     .then(({ data: { comment } }) => {
       return comment;
     });
