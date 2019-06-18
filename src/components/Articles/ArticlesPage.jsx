@@ -10,23 +10,17 @@ class ArticlesPage extends React.Component {
 
   componentDidMount() {
     const { topic } = this.props;
-    getArticles({ topic }).then(({ articles, articles_count }) =>
-      this.setState({ articles, articles_count })
-    );
+    this.fetchArticles({ topic });
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { sort_by, p } = this.state;
     const { topic } = this.props;
     if (prevState.sort_by !== sort_by) {
-      getArticles({ topic, sort_by }).then(({ articles, articles_count }) =>
-        this.setState({ articles, articles_count })
-      );
+      this.fetchArticles({ topic, sort_by });
     }
     if (prevState.p !== p) {
-      getArticles({ topic, p }).then(({ articles, articles_count }) =>
-        this.setState({ articles, articles_count })
-      );
+      this.fetchArticles({ topic, p });
     }
   }
 
@@ -73,6 +67,12 @@ class ArticlesPage extends React.Component {
 
   updatePage = page => {
     this.setState({ p: page });
+  };
+
+  fetchArticles = queries => {
+    getArticles(queries).then(({ articles, articles_count }) =>
+      this.setState({ articles, articles_count })
+    );
   };
 }
 
