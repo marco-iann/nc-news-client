@@ -3,11 +3,11 @@ import moment from 'moment';
 import { patchComment } from '../../api';
 
 class CommentView extends React.Component {
-  state = { comment: this.props.comment, voteChange: 0 };
+  state = { voteChange: 0 };
 
   render() {
-    const { comment, voteChange } = this.state;
-    const { loggedInUser } = this.props;
+    const { voteChange } = this.state;
+    const { comment, loggedInUser } = this.props;
     const { author, body, created_at, votes } = comment ? comment : {};
     return (
       <li className="ui segment">
