@@ -1,20 +1,23 @@
 import React from 'react';
+import Error from '../Error';
 import { navigate } from '@reach/router';
 import './Articles.css';
 import { getTopics, postArticle } from '../../api';
 
 class AddArticle extends React.Component {
-  state = { topics: [], title: '', body: '', selectedTopic: '' };
+  state = { topics: [], title: '', body: '', selectedTopic: '', err: null };
 
   componentDidMount() {
-    getTopics().then(topics =>
-      this.setState({ topics, selectedTopic: topics[0].slug })
-    );
+    getTopics()
+      .then(topics => this.setState({ topics, selectedTopic: topics[0].slug }))
+      .catch(err => this.setState({ err }));
   }
 
   render() {
-    const { topics, title, body } = this.state;
-    return (
+    const { topics, title, body, err } = this.state;
+    return err ? (
+      <Error err={err} />
+    ) : (
       <div className="ui container segment">
         <form className="ui form" onSubmit={this.submitArticle}>
           <div className="field">
@@ -80,9 +83,11 @@ class AddArticle extends React.Component {
     const username = this.props.loggedInUser;
     const { title, body, selectedTopic } = this.state;
     const newArticle = { username, title, body, topic: selectedTopic };
-    postArticle(newArticle).then(article => {
-      navigate('/articles/' + article.article_id);
-    });
+    postArticle(newArticle)
+      .then(article => {
+        navigate('/articles/' + article.article_id);
+      })
+      .catch(err => this.setState({ err }));
   };
 }
 

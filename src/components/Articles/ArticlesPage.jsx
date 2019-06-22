@@ -1,12 +1,14 @@
 import React from 'react';
 import ArticlesList from './ArticlesList';
 import PageButtons from '../PageButtons';
+import Loader from '../Loader';
+import Error from '../Error';
 import './Articles.css';
 import { Link } from '@reach/router';
 import { getArticles } from '../../api';
 
 class ArticlesPage extends React.Component {
-  state = { articles: [], articles_count: 0, sort_by: '', p: 1 };
+  state = { articles: null, articles_count: 0, sort_by: '', p: 1, err: null };
 
   componentDidMount() {
     const { topic } = this.props;
@@ -25,9 +27,21 @@ class ArticlesPage extends React.Component {
   }
 
   render() {
-    const { articles, articles_count, p } = this.state;
+    const { articles, articles_count, p, err } = this.state;
     const { loggedInUser } = this.props;
     const pages = Array.from({ length: Math.ceil(articles_count / 10) });
+    const renderedArticles = articles ? (
+      <div>
+        <ArticlesList articles={articles} />
+        <PageButtons
+          pages={pages}
+          currentPage={p}
+          updatePage={this.updatePage}
+        />
+      </div>
+    ) : (
+      <Error err={err} />
+    );
     return (
       <div className="ui container segment">
         <div className="articles-header">
@@ -51,12 +65,7 @@ class ArticlesPage extends React.Component {
             </label>
           </div>
         </form>
-        <ArticlesList articles={articles} />
-        <PageButtons
-          pages={pages}
-          currentPage={p}
-          updatePage={this.updatePage}
-        />
+        {articles || err ? renderedArticles : <Loader />}
       </div>
     );
   }
@@ -70,9 +79,11 @@ class ArticlesPage extends React.Component {
   };
 
   fetchArticles = queries => {
-    getArticles(queries).then(({ articles, articles_count }) =>
-      this.setState({ articles, articles_count })
-    );
+    getArticles(queries)
+      .then(({ articles, articles_count }) =>
+        this.setState({ articles, articles_count })
+      )
+      .catch(err => this.setState({ err }));
   };
 }
 
