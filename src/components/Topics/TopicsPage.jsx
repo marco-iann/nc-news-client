@@ -1,5 +1,6 @@
 import React from 'react';
 import TopicsList from './TopicsList';
+import Loader from '../Loader';
 import { getTopics } from '../../api';
 
 class TopicsPage extends React.Component {
@@ -14,9 +15,13 @@ class TopicsPage extends React.Component {
     return (
       <div className="ui container segment">
         <h2>Topics</h2>
-        <ul>
-          <TopicsList topics={topics} />
-        </ul>
+        {topics.length === 0 ? (
+          <Loader />
+        ) : (
+          <ul>
+            <TopicsList topics={topics} />
+          </ul>
+        )}
       </div>
     );
   }
