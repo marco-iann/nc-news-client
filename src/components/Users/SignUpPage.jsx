@@ -3,8 +3,9 @@ import { addUser } from '../../api';
 import { navigate } from '@reach/router';
 
 class SignInPage extends React.Component {
-  state = { username: '', name: '' };
+  state = { username: '', name: '', err: null };
   render() {
+    const { err } = this.state;
     return (
       <div className="ui container segment">
         <h2>Register</h2>
@@ -35,6 +36,7 @@ class SignInPage extends React.Component {
           </div>
           <button className="ui button">Register</button>
         </form>
+        {err && <p>Unable to register</p>}
       </div>
     );
   }
@@ -45,10 +47,12 @@ class SignInPage extends React.Component {
 
   register = e => {
     e.preventDefault();
-    addUser(this.state).then(newUser => {
-      this.props.logIn(newUser);
-      navigate('/dashboard');
-    });
+    addUser(this.state)
+      .then(newUser => {
+        this.props.logIn(newUser);
+        navigate('/dashboard');
+      })
+      .catch(err => this.setState({ err }));
   };
 }
 
