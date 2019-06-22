@@ -17,7 +17,7 @@ const ArticlesList = ({ articles }) => {
           comments_count
         } = article;
         return (
-          <li className="ui segment article" key={`article${article_id}`}>
+          <li className="ui segment article" key={article_id}>
             <Link className="article-link" to={`/articles/${article_id}`}>
               <h6 className="article-topic">{topic}</h6>
               <h3 className="entry article-title">{title}</h3>

@@ -7,7 +7,7 @@ const TopicsList = ({ topics }) => {
     <>
       {topics.map((topic, i) => {
         return (
-          <li className="ui segment topic-box" key={`topic${i}`}>
+          <li className="ui segment topic-box" key={i}>
             <Link className="topic" to={`/topics/${topic.slug}`}>
               <h3>{topic.slug}</h3>
               <p className="topic-description">{topic.description}</p>

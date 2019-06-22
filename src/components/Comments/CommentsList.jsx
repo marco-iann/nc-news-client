@@ -37,7 +37,7 @@ class CommentsList extends React.Component {
             const { comment_id } = comment;
             return (
               <CommentView
-                key={`comment${comment_id}`}
+                key={comment_id}
                 comment={comment}
                 loggedInUser={this.props.loggedInUser}
                 deleteComment={this.deleteComment}
