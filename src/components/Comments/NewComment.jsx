@@ -3,6 +3,7 @@ import './Comments.css';
 
 class AddComment extends React.Component {
   state = { commentInput: '' };
+
   render() {
     const { commentInput } = this.state;
     return (
