@@ -35,3 +35,9 @@
 .link:focus {
   outline: 0;
 }
+
+@media only screen and (max-width: 340px) {
+  .link {
+    margin-right: 10px;
+  }
+}
